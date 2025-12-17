@@ -9,7 +9,7 @@ npm run dev
 # or
 yarn dev
 # or
-pnpm dev
+pnpm dev --port 3001
 # or
 bun dev
 ```
@@ -34,3 +34,29 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Tính năng chính
+
+# Các route chính
+
+- learning/[N (JLPT level)]/grammar
+- learning/[N (JLPT level)]/vocabulary
+- learning/[N (JLPT level)]/kanji
+- practice/[N (JLPT level)]/grammar
+- practice/[N (JLPT level)]/vocabulary
+- practice/[N (JLPT level)]/kanji
+
+# Item structure
+
+```json
+// Lesson table
+{
+    "lesson": 1, // Bài số 1
+    "vocabulary": [],
+    "kanji": [],
+    "grammar": [],
+    "source": "Minna no nihongo" // Nguồn từ ?
+}
+// Vocabulary table
+// Kanji table
+// Grammar table
