@@ -114,7 +114,7 @@ function LessonItem({ lesson }: { lesson: Lesson }) {
 
 function GrammarItem({ grammar, index }: { grammar: Grammar; index: number }) {
   return (
-    <Item variant="muted">
+    <Item variant="outline">
       <ItemHeader>
         <Badge variant="outline">{index + 1}</Badge>
         <ItemActions>
