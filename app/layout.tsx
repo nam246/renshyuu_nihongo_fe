@@ -31,11 +31,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* <Navbar /> */}
         <Toaster />
+        {/* <Navbar /> */}
         <Header />
-        <div className="w-1/2 mx-auto flex flex-col items-center gap-6 text-center sm:items-start sm:text-left"></div>
-        {children}
+        <main className="">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

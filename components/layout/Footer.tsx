@@ -11,7 +11,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="mt-auto border-t bg-slate-50 relative">
+    <footer className="mt-5 border-t bg-slate-50 relative">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
@@ -25,8 +25,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-sm text-slate-600">
-              Nền tảng học tiếng Nhật hiện đại và hiệu quả nhất cho người Việt
-              Nam
+              Nền tảng học tiếng Nhật hiện đại và hiệu quả nhất cho người Việt Nam
             </p>
           </div>
 

@@ -17,6 +17,7 @@ export type Vocabulary = {
   level: Level;
   examples: Example[];
   media?: [];
+  // lessonId: string;
 };
 
 export type Grammar = {
@@ -28,6 +29,7 @@ export type Grammar = {
   notes: string;
   examples: Example[];
   level: Level;
+  // lessonId: string;
 };
 
 export type Example = {
@@ -38,15 +40,15 @@ export type Example = {
 };
 
 export enum Level {
-  N5,
-  N4,
-  N3,
-  N2,
-  N1,
+  N5 = "n5",
+  N4 = "n4",
+  N3 = "n3",
+  N2 = "n2",
+  N1 = "n1",
 }
 
 export enum WordType {
-  NOUN,
-  VERB,
-  ADJECTIVE,
+  NOUN = "noun",
+  VERB = "verb",
+  ADJECTIVE = "adjective",
 }
