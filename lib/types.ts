@@ -1,8 +1,6 @@
 export type Lesson = {
   id: string;
   lessonNumber: number;
-
-  grammar: Grammar[] | [];
   level: Level;
   source: string;
 };
@@ -10,14 +8,14 @@ export type Lesson = {
 export type Vocabulary = {
   id: string;
   word: string;
-  kanji: string;
   romaji: string;
   meaning: string;
   wordType: WordType;
   level: Level;
-  examples: Example[];
-  media?: [];
-  // lessonId: string;
+  kanjiId: string[];
+  exampleId: string[];
+  mediaId: string[];
+  lessonId?: string;
 };
 
 export type Grammar = {
@@ -27,12 +25,25 @@ export type Grammar = {
   meaning?: string;
   explaination?: string;
   notes: string;
-  examples: Example[];
   level: Level;
-  // lessonId: string;
+  exampleId: string[];
+  lessonId?: string;
+};
+
+export type Kanji = {
+  id: string;
+  character: string;
+  onyomi?: string;
+  kunyomi?: string;
+  meaning: string;
+  level: Level;
+  strokeCount?: number;
+  exampleId?: string[];
+  lessonId?: string;
 };
 
 export type Example = {
+  id: string;
   japanese: string;
   romaji: string;
   vietnamese: string;

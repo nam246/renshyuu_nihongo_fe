@@ -37,26 +37,39 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Tính năng chính
 
+- JWT Auth?
+- i18n?
+- dark mode?
+
 # Các route chính
 
-- learning/[N (JLPT level)]/grammar
-- learning/[N (JLPT level)]/vocabulary
-- learning/[N (JLPT level)]/kanji
-- practice/[N (JLPT level)]/grammar
-- practice/[N (JLPT level)]/vocabulary
-- practice/[N (JLPT level)]/kanji
+- learning/[level]/grammar
+- learning/[level]/vocabulary
+- learning/[level]/kanji
+- practice/[level]/grammar
+- practice/[level]/vocabulary
+- practice/[level]/kanji
+
+## Learning
+
+- learning sẽ cho học tập theo các bài học từ các nguồn giáo trình như Minna no Nihongo, Soumatome,...
+- Sau khi login thì có trang Dashboard cho phép track thời gian đã học theo tuần, số lượng từ vựng, ngữ pháp đã học
+- Cho phép tự nhập vào bài học mới, từ vựng hoặc kanji mới theo người dùng.
+- ...
+- Import bằng file PDF?
+- Import bằng ANki?
+
+## Practice
+
+- Xây dựng chức năng mô phỏng bài thi theo dạng trắc nghiệm theo từ vựng, kanji, ngữ pháp, nghe, đọc.
+- Khi login, người dùng cũng có thể tự nhập câu hỏi cho từ vựng, kanji, ngữ pháp, nghe, đọc
+
+## Chức năng làm bài thi thử
 
 # Item structure
 
 ```json
 // Lesson table
-{
-    "lesson": 1, // Bài số 1
-    "vocabulary": [],
-    "kanji": [],
-    "grammar": [],
-    "source": "Minna no nihongo" // Nguồn từ ?
-}
 // Vocabulary table
 // Kanji table
 // Grammar table

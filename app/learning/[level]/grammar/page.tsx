@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Grammar, Lesson, Level } from "@/lib/types";
-import { lessons } from "@/lib/mockData";
+import { lessons, grammars } from "@/lib/mock-data";
 import {
   BookOpen,
   GraduationCap,
@@ -53,6 +53,7 @@ const getLevelColor = (level: Level) => {
 
 // Component cho từng lesson
 function LessonItem({ lesson }: { lesson: Lesson }) {
+  const grammar = grammars.filter((g) => g.lessonId === lesson.id);
   return (
     <Card className="group hover:shadow-lg transition-all duration-300 cursor-pointer">
       <CardHeader>
@@ -64,7 +65,7 @@ function LessonItem({ lesson }: { lesson: Lesson }) {
           {lesson.source}
           <div className="font-medium flex items-center gap-1">
             <GraduationCap className="w-4 h-4" />
-            {lesson.grammar.length} mẫu ngữ pháp
+            {grammar.length} mẫu ngữ pháp
           </div>
         </CardDescription>
         <CardAction className="flex items-center gap-2">
@@ -92,7 +93,7 @@ function LessonItem({ lesson }: { lesson: Lesson }) {
         <div className="space-y-2">
           {/* Danh sách các pattern ngữ pháp */}
           <ItemGroup className="grid grid-cols-4 gap-2">
-            {lesson.grammar.map((item, index) => (
+            {grammar.map((item, index) => (
               <GrammarItem grammar={item} index={index} key={index} />
             ))}
           </ItemGroup>
@@ -102,7 +103,7 @@ function LessonItem({ lesson }: { lesson: Lesson }) {
       <CardFooter>
         <Link
           className="text-slate-400 hover:text-blue-500 hover:translate-x-1 transition-all"
-          href={`grammar/${lesson.id}`}
+          href={`grammar/${lesson.id}?isLesson=true`}
         >
           Xem toàn bộ bài {lesson.lessonNumber}{" "}
           <ChevronRight className="inline" />
@@ -189,7 +190,7 @@ export default function LearningGrammarPage() {
         <Card>
           <CardHeader>
             <CardTitle className="text-3xl font-bold text-emerald-600">
-              {lessons.reduce((sum, l) => sum + l.grammar.length, 0)}
+              {lessons.reduce((sum, l) => sum + grammars.length, 0)}
             </CardTitle>
             <CardDescription>Mẫu ngữ pháp</CardDescription>
           </CardHeader>
@@ -207,8 +208,8 @@ export default function LearningGrammarPage() {
 
       {/* Danh sách bài học */}
       <div className="space-y-4">
-        {lessons.map((lesson) => (
-          <LessonItem key={lesson.id} lesson={lesson} />
+        {lessons.map((lesson, index) => (
+          <LessonItem key={index} lesson={lesson} />
         ))}
       </div>
     </>
