@@ -63,3 +63,29 @@ export enum WordType {
   VERB = "verb",
   ADJECTIVE = "adjective",
 }
+
+export enum VocabularyPracticeContent {
+  KANJI_READING = "kanji_reading", // Cách đọc Kanji
+  HIRAGANA_READING = "hiragana_reading", // Cách đọc Hiragana
+  WORD_EXPRESSIONS = "word_expressions", // Biểu hiện từ
+  SYNONYMS = "synonyms", // Từ đồng nghĩa
+}
+
+export enum GrammarPracticeContent {
+  GRAMMAR_PATTERNS = "grammar_patterns", // Dạng ngữ pháp
+  SENTENCE_FORMATION = "sentence_formation", // Thành lập câu
+  CONTEXT_GRAMMAR = "context_grammar", // Ngữ pháp theo đoạn văn
+}
+
+export enum ReadingPracticeContent {
+  SHORT_PASSAGE = "short_passage", // Đoạn văn ngắn
+  MEDIUM_PASSAGE = "medium_passage", // Đoạn văn trung bình
+  INFORMATION_SEARCH = "information_search", // Tìm thông tin
+}
+
+export enum ListeningContentType {
+  TOPIC_COMPREHENSION = "topic_comprehension", // Nghe hiểu chủ đề
+  MAIN_IDEA_COMPREHENSION = "main_idea_comprehension", // Nghe hiểu điểm chính
+  EXPRESSION_COMPREHENSION = "expression_comprehension", // Nghe hiểu diễn đạt
+  QUICK_RESPONSE = "quick_response", // Trả lời nhanh
+}
