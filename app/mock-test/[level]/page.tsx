@@ -81,7 +81,7 @@ export default async function ListTestPage({
 }) {
   const { level } = await params;
   return (
-    <div className="container mx-auto">
+    <>
       <Title />
       <div className="grid grid-cols-4 gap-3">
         {testData.length > 0 &&
@@ -112,6 +112,6 @@ export default async function ListTestPage({
             </Card>
           ))}
       </div>
-    </div>
+    </>
   );
 }
