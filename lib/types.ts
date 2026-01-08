@@ -15,7 +15,7 @@ export type Vocabulary = {
 	wordType: WordType;
 	level: Level;
 	kanjiId: string[];
-	exampleId: string[];
+	examples: Example[];
 	mediaId: string[];
 	lessonId?: string;
 	createdAt: string;
@@ -48,10 +48,8 @@ export type Kanji = {
 
 export type Example = {
 	id: string;
-	japanese: string;
-	romaji: string;
-	vietnamese: string;
-	explanation: string;
+	title: string;
+	description: string;
 };
 
 export enum Level {

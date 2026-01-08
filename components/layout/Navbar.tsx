@@ -27,7 +27,7 @@ import {
 	NavigationMenuTrigger,
 	navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-import ProfileDropdown from '@/app/dashboard/_components/dropdown-profile';
+// import ProfileDropdown from '@/app/dashboard/_components/dropdown-profile';
 
 const learningMenuItems: {
 	title: string;
@@ -272,7 +272,7 @@ export default function Navbar() {
 
 			{/* Login Button */}
 			<div className='flex align-center justify-between'>
-				<ProfileDropdown
+				{/* <ProfileDropdown
 					trigger={
 						<Button variant='ghost' size='icon' className='size-9.5'>
 							<Avatar className='size-9.5 rounded-md'>
@@ -281,7 +281,7 @@ export default function Navbar() {
 							</Avatar>
 						</Button>
 					}
-				/>
+				/> */}
 				<Button className='rounded-lg max-md:hidden' asChild>
 					<Link href='/login'>Login</Link>
 				</Button>

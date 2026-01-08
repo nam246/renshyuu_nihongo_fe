@@ -2,20 +2,10 @@
 
 import {
 	BookOpen,
-	Home,
-	GraduationCap,
 	Trophy,
-	User,
-	Menu,
-	X,
-	Search,
 	Sparkles,
-	Clock,
 	Target,
 	Zap,
-	Star,
-	TrendingUp,
-	Globe,
 	Users,
 	Award,
 	ChevronRight,
@@ -34,105 +24,109 @@ import {
 import { Button } from '@/components/ui/button';
 
 import HeroSection from '@/components/layout/HeroSection';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+
+const features = [
+	{
+		icon: Zap,
+		title: 'Học nhanh hiệu quả',
+		description: 'Phương pháp học tối ưu giúp bạn tiến bộ từng ngày',
+		color: 'from-yellow-500 to-orange-500',
+	},
+	{
+		icon: Target,
+		title: 'Lộ trình cá nhân hóa',
+		description: 'Chương trình học phù hợp với trình độ và mục tiêu của bạn',
+		color: 'from-blue-500 to-indigo-500',
+	},
+	{
+		icon: Trophy,
+		title: 'Gamification',
+		description: 'Tích điểm, hoàn thành thử thách và leo lên bảng xếp hạng',
+		color: 'from-purple-500 to-pink-500',
+	},
+	{
+		icon: Users,
+		title: 'Cộng đồng học tập',
+		description: 'Kết nối và học hỏi cùng hàng ngàn học viên khác',
+		color: 'from-green-500 to-teal-500',
+	},
+];
+
+const levels: {
+	title: string;
+	description: string;
+	lessons: number;
+	students: number;
+}[] = [
+	{
+		title: 'N5 - Sơ cấp',
+		description: 'Nền tảng Hiragana, Katakana và từ vựng cơ bản',
+		lessons: 120,
+		students: 15000,
+	},
+	{
+		title: 'N4 - Trung cấp',
+		description: 'Ngữ pháp tiếng Nhật cơ bản và hội thoại hàng ngày',
+		lessons: 180,
+		students: 10000,
+	},
+	{
+		title: 'N3 - Trung cao cấp',
+		description: 'Giao tiếp thành thạo trong các tình huống thực tế',
+		lessons: 240,
+		students: 6000,
+	},
+];
 
 // Homepage Component
 export default function Homepage() {
-	const features = [
-		{
-			icon: Zap,
-			title: 'Học nhanh hiệu quả',
-			description: 'Phương pháp học tối ưu giúp bạn tiến bộ từng ngày',
-			color: 'from-yellow-500 to-orange-500',
-		},
-		{
-			icon: Target,
-			title: 'Lộ trình cá nhân hóa',
-			description: 'Chương trình học phù hợp với trình độ và mục tiêu của bạn',
-			color: 'from-blue-500 to-indigo-500',
-		},
-		{
-			icon: Trophy,
-			title: 'Gamification',
-			description: 'Tích điểm, hoàn thành thử thách và leo lên bảng xếp hạng',
-			color: 'from-purple-500 to-pink-500',
-		},
-		{
-			icon: Users,
-			title: 'Cộng đồng học tập',
-			description: 'Kết nối và học hỏi cùng hàng ngàn học viên khác',
-			color: 'from-green-500 to-teal-500',
-		},
-	];
-
-	const stats = [
-		{ number: '50K+', label: 'Học viên', icon: Users },
-		{ number: '1000+', label: 'Bài học', icon: BookOpen },
-		{ number: '95%', label: 'Hài lòng', icon: Star },
-		{ number: '24/7', label: 'Hỗ trợ', icon: Clock },
-	];
-
-	const levels = [
-		{
-			title: 'N5 - Sơ cấp',
-			description: 'Nền tảng Hiragana, Katakana và từ vựng cơ bản',
-			lessons: 120,
-			students: 15000,
-		},
-		{
-			title: 'N4 - Trung cấp',
-			description: 'Ngữ pháp tiếng Nhật cơ bản và hội thoại hàng ngày',
-			lessons: 180,
-			students: 10000,
-		},
-		{
-			title: 'N3 - Trung cao cấp',
-			description: 'Giao tiếp thành thạo trong các tình huống thực tế',
-			lessons: 240,
-			students: 6000,
-		},
-	];
-
 	return (
-		<div className='min-h-screen bg-gradient-to-b from-slate-50 to-white'>
-			{/* Hero Section */}
-			<HeroSection />
-			{/* <HeroSectionv2 stats={stats} /> */}
+		<>
+			<Header />
+			<div className='min-h-screen'>
+				{/* Hero Section */}
+				<HeroSection />
+				{/* <HeroSectionv2 stats={stats} /> */}
 
-			{/* Features Section */}
-			<FeaturesSection features={features} />
+				{/* Features Section */}
+				<FeaturesSection features={features} />
 
-			{/* Levels Section */}
-			<LevelSection levels={levels} />
+				{/* Levels Section */}
+				<LevelSection levels={levels} />
 
-			{/* CTA Section */}
-			<CTASection />
+				{/* CTA Section */}
+				<CTASection />
 
-			<style jsx>{`
-				@keyframes blob {
-					0% {
-						transform: translate(0px, 0px) scale(1);
+				<style jsx>{`
+					@keyframes blob {
+						0% {
+							transform: translate(0px, 0px) scale(1);
+						}
+						33% {
+							transform: translate(30px, -50px) scale(1.1);
+						}
+						66% {
+							transform: translate(-20px, 20px) scale(0.9);
+						}
+						100% {
+							transform: translate(0px, 0px) scale(1);
+						}
 					}
-					33% {
-						transform: translate(30px, -50px) scale(1.1);
+					.animate-blob {
+						animation: blob 7s infinite;
 					}
-					66% {
-						transform: translate(-20px, 20px) scale(0.9);
+					.animation-delay-2000 {
+						animation-delay: 2s;
 					}
-					100% {
-						transform: translate(0px, 0px) scale(1);
+					.animation-delay-4000 {
+						animation-delay: 4s;
 					}
-				}
-				.animate-blob {
-					animation: blob 7s infinite;
-				}
-				.animation-delay-2000 {
-					animation-delay: 2s;
-				}
-				.animation-delay-4000 {
-					animation-delay: 4s;
-				}
-			`}</style>
-		</div>
+				`}</style>
+			</div>
+			<Footer />
+		</>
 	);
 }
 
@@ -199,13 +193,13 @@ function HeroSectionv2({ stats }: { stats: any }) {
 
 function FeaturesSection({ features }: { features: any }) {
 	return (
-		<section className='py-20 bg-white'>
+		<section className='py-20'>
 			<div className='container mx-auto px-4'>
 				<div className='text-center mb-16'>
-					<h2 className='text-4xl md:text-5xl font-bold text-slate-800 mb-4'>
+					<h2 className='text-4xl md:text-5xl font-bold mb-4'>
 						Tại sao chọn ZipJap?
 					</h2>
-					<p className='text-xl text-slate-600 max-w-2xl mx-auto'>
+					<p className='text-xl max-w-2xl mx-auto'>
 						Những tính năng vượt trội giúp bạn học tiếng Nhật hiệu quả hơn
 					</p>
 				</div>
@@ -216,21 +210,19 @@ function FeaturesSection({ features }: { features: any }) {
 						return (
 							<Card
 								key={index}
-								className='group bg-slate-50 rounded-2xl hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer'
+								className='group rounded-2xl hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer'
 							>
 								<CardHeader>
 									<CardTitle>
 										<div
 											className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
 										>
-											<Icon className='w-7 h-7 text-white' />
+											<Icon className='w-7 h-7' />
 										</div>
-										<h3 className='text-xl font-bold text-slate-800 mb-2'>
-											{feature.title}
-										</h3>
+										<h3 className='text-xl font-bold mb-2'>{feature.title}</h3>
 									</CardTitle>
 									<CardDescription>
-										<p className='text-slate-600'>{feature.description}</p>
+										<p className=''>{feature.description}</p>
 									</CardDescription>
 								</CardHeader>
 							</Card>
@@ -244,13 +236,11 @@ function FeaturesSection({ features }: { features: any }) {
 
 function LevelSection({ levels }: { levels: any }) {
 	return (
-		<section className='py-20 bg-gradient-to-b from-white to-slate-50'>
+		<section className='py-20 bg-gradient-to-b from-primary to-slate-50'>
 			<div className='container mx-auto px-4'>
 				<div className='text-center mb-16'>
-					<h2 className='text-4xl md:text-5xl font-bold text-slate-800 mb-4'>
-						Lộ trình học tập
-					</h2>
-					<p className='text-xl text-slate-600 max-w-2xl mx-auto'>
+					<h2 className='text-4xl md:text-5xl font-bold mb-4'>Lộ trình học tập</h2>
+					<p className='text-xl max-w-2xl mx-auto'>
 						Chọn cấp độ phù hợp và bắt đầu hành trình của bạn
 					</p>
 				</div>
@@ -292,10 +282,8 @@ function CTASection() {
 	return (
 		<section className='py-20 bg-primary'>
 			<div className='container mx-auto px-4 text-center'>
-				<h2 className='text-4xl md:text-5xl font-bold text-white mb-6'>
-					Sẵn sàng bắt đầu chưa?
-				</h2>
-				<p className='text-xl text-blue-100 mb-10 max-w-2xl mx-auto'>
+				<h2 className='text-4xl md:text-5xl mb-6'>Sẵn sàng bắt đầu chưa?</h2>
+				<p className='text-xl mb-10 max-w-2xl mx-auto'>
 					Tham gia cùng hàng ngàn học viên đang chinh phục tiếng Nhật mỗi ngày
 				</p>
 				<button className='px-10 py-4 bg-white text-primary rounded-xl font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-200'>

@@ -4,8 +4,6 @@ import '@/styles/globals.css';
 
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
-import Footer from '@/components/layout/Footer';
-import Header from '@/components/layout/Header';
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -19,7 +17,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
 	title: 'Renshyuu | Practice your ways',
-	description: 'A Web-Based System for Japanese Language Learning and JLPT Examination Practice with User-Defined Content',
+	description:
+		'A Web-Based System for Japanese Language Learning and JLPT Examination Practice with User-Defined Content',
 };
 
 // chắc nên mang header và footer vào page
@@ -39,9 +38,8 @@ export default function RootLayout({
 				>
 					<Toaster />
 					{/* <Navbar /> */}
-					<Header />
-					<main className=''>{children}</main>
-					<Footer />
+
+					<main>{children}</main>
 				</ThemeProvider>
 			</body>
 		</html>

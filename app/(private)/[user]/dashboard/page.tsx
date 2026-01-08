@@ -57,6 +57,8 @@ import TotalEarningCard from "@/app/[user]/_components/widget-total-earning";
 import TransactionDatatable, {
   type Item,
 } from "@/app/[user]/_components/datatable-transaction";
+import Logo from "@/components/Logo";
+import Link from "next/link";
 
 // Statistics card data
 const StatisticsCardData = [
@@ -361,6 +363,11 @@ const DashboardShell = () => {
             <SidebarGroup>
               <SidebarGroupContent>
                 <SidebarMenu>
+                  <SidebarMenuItem>
+                    <Link href="/">
+                        <Logo />
+                      </Link>
+                  </SidebarMenuItem>
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild>
                       <a href="#">
