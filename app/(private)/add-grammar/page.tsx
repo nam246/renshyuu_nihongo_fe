@@ -22,7 +22,8 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select';
-import { Level } from '@/lib/types';
+import { Level } from '@/types/types';
+import PageHeader from '@/components/layout/page-header';
 
 interface GrammarFormData {
 	pattern: string;
@@ -150,8 +151,8 @@ const AddGrammarPage = () => {
 				mediaPreview: '',
 				examples: [{ japanese: '', vietnamese: '' }],
 			});
-		} catch (err: any) {
-			setError(err.message);
+		} catch (err: Error | unknown) {
+			setError(err instanceof Error ? err.message : 'An error occurred');
 		} finally {
 			setLoading(false);
 		}
@@ -160,12 +161,10 @@ const AddGrammarPage = () => {
 	return (
 		<div className='space-y-6'>
 			{/* Header */}
-			<div>
-				<h1 className='text-3xl font-bold text-gray-900'>Thêm ngữ pháp mới</h1>
-				<p className='text-gray-600 mt-1'>
-					Tạo mẫu ngữ pháp mới để bổ sung vào thư viện học tập
-				</p>
-			</div>
+			<PageHeader
+				title='Thêm ngữ pháp mới'
+				description='Tạo mẫu ngữ pháp mới để bổ sung vào thư viện học tập'
+			/>
 
 			<form onSubmit={handleSubmit} className='space-y-6'>
 				{/* Messages */}

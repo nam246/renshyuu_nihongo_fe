@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils";
 
 import Logo from "@/components/Logo";
-import Navbar from "./Navbar";
-import LoginButton from "./LoginButton";
+import Navbar from "./navbar";
+import LoginButton from "./login-button";
 import ThemeToggle from "./theme-toggle";
 
 export type NavigationSection = {

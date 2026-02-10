@@ -1,6 +1,14 @@
 'use client';
 
-import { Card } from '@/components/ui/card';
+import {
+	Card,
+	CardHeader,
+	CardTitle,
+	CardDescription,
+	CardContent,
+	CardAction,
+	CardFooter,
+} from '@/components/ui/card';
 
 interface DailyActivity {
 	day: string;
@@ -20,19 +28,17 @@ const WeeklyActivityChart = ({
 }: WeeklyActivityChartProps) => {
 	const maxValue = Math.max(
 		...data.flatMap((d) => [d.lessons, d.vocabulary, d.grammar]),
-		1
+		1,
 	);
 
 	return (
-		<Card className='p-6'>
-			<div className='mb-6'>
-				<h3 className='text-lg font-semibold'>{title}</h3>
-				<p className='mt-1 text-sm'>
-					Lượng bài tập hoàn thành mỗi ngày
-				</p>
-			</div>
+		<Card>
+			<CardHeader>
+				<CardTitle>{title}</CardTitle>
+				<CardDescription>Lượng bài tập hoàn thành mỗi ngày</CardDescription>
+			</CardHeader>
 
-			<div className='space-y-4'>
+			<CardContent className='space-y-4'>
 				<div className='flex items-end justify-between gap-2 h-48'>
 					{data.map((item, index) => (
 						<div key={index} className='flex flex-col items-center flex-1 gap-2'>
@@ -70,7 +76,7 @@ const WeeklyActivityChart = ({
 					))}
 				</div>
 
-				<div className='flex items-center justify-center gap-4 pt-4 border-t border-gray-200'>
+				<CardFooter className='flex items-center justify-center gap-4 pt-4 border-t border-gray-200'>
 					<div className='flex items-center gap-2'>
 						<div className='h-3 w-3 rounded bg-blue-500' />
 						<span className='text-xs'>Bài học</span>
@@ -83,8 +89,8 @@ const WeeklyActivityChart = ({
 						<div className='h-3 w-3 rounded bg-purple-500' />
 						<span className='text-xs'>Ngữ pháp</span>
 					</div>
-				</div>
-			</div>
+				</CardFooter>
+			</CardContent>
 		</Card>
 	);
 };

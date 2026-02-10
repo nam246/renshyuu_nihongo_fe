@@ -1,8 +1,18 @@
 'use client';
 
-import { Card } from '@/components/ui/card';
-import { Bell, Lock, Moon, Volume2 } from 'lucide-react';
 import { useState } from 'react';
+
+import { Bell, Lock, Moon, Volume2 } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
+import { Button } from '@/components/ui/button';
+import {
+	Item,
+	ItemActions,
+	ItemContent,
+	ItemDescription,
+	ItemMedia,
+	ItemTitle,
+} from '@/components/ui/item';
 
 interface SettingsProps {
 	onSave?: (settings: UserSettings) => Promise<void>;
@@ -23,26 +33,6 @@ const UserSettings = ({ onSave }: SettingsProps) => {
 		soundEnabled: true,
 	});
 	const [saving, setSaving] = useState(false);
-
-	const handleToggle = async (key: keyof UserSettings) => {
-		const updatedSettings = {
-			...settings,
-			[key]: !settings[key],
-		};
-		setSettings(updatedSettings);
-
-		if (onSave) {
-			setSaving(true);
-			try {
-				await onSave(updatedSettings);
-			} catch (error) {
-				// Revert on error
-				setSettings(settings);
-			} finally {
-				setSaving(false);
-			}
-		}
-	};
 
 	const settingItems = [
 		{
@@ -81,63 +71,48 @@ const UserSettings = ({ onSave }: SettingsProps) => {
 
 	return (
 		<div className='space-y-4'>
-			<h3 className='text-lg font-semibold text-gray-900 mb-4'>Cài đặt</h3>
-
 			{settingItems.map((item) => {
 				const Icon = item.icon;
 				const isEnabled = settings[item.id as keyof UserSettings];
 
 				return (
-					<Card key={item.id} className='p-4'>
-						<div className='flex items-center justify-between'>
-							<div className='flex items-start gap-4'>
-								<div className={`${item.bgColor} p-3 rounded-lg`}>
-									<Icon className={`w-5 h-5 ${item.color}`} />
-								</div>
-								<div>
-									<p className='font-medium text-gray-900'>{item.label}</p>
-									<p className='text-sm text-gray-600'>{item.description}</p>
-								</div>
+					<Item variant='outline' key={item.id}>
+						<ItemMedia>
+							<div className={`${item.bgColor} p-3 rounded-lg`}>
+								<Icon className={`w-5 h-5 ${item.color}`} />
 							</div>
-
+						</ItemMedia>
+						<ItemContent>
+							<ItemTitle>{item.label}</ItemTitle>
+							<ItemDescription>{item.description}</ItemDescription>
+						</ItemContent>
+						<ItemActions>
 							{/* Toggle Switch */}
-							<button
-								onClick={() =>
-									handleToggle(item.id as keyof UserSettings)
-								}
-								disabled={saving}
-								className={`relative w-12 h-7 rounded-full transition-colors ${
-									isEnabled ? 'bg-blue-600' : 'bg-gray-300'
-								} ${saving ? 'opacity-50 cursor-not-allowed' : ''}`}
-							>
-								<div
-									className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full transition-transform ${
-										isEnabled ? 'translate-x-5' : ''
-									}`}
-								/>
-							</button>
-						</div>
-					</Card>
+							<Switch defaultChecked={isEnabled} />
+						</ItemActions>
+					</Item>
 				);
 			})}
 
 			{/* Security Section */}
-			<Card className='p-4 mt-6 bg-red-50 border border-red-200'>
-				<div className='flex items-start gap-4'>
+			<Item variant='outline' className='bg-red-50'>
+				<ItemMedia variant='icon'>
 					<div className='bg-red-100 p-3 rounded-lg'>
 						<Lock className='w-5 h-5 text-red-600' />
 					</div>
-					<div className='flex-1'>
-						<p className='font-medium text-gray-900'>Thay đổi mật khẩu</p>
-						<p className='text-sm text-gray-600 mb-3'>
-							Cập nhật mật khẩu của bạn để bảo mật tài khoản
-						</p>
-						<button className='px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm font-medium'>
-							Thay đổi mật khẩu
-						</button>
-					</div>
-				</div>
-			</Card>
+				</ItemMedia>
+				<ItemContent>
+					<ItemTitle>Thay đổi mật khẩu</ItemTitle>
+					<ItemDescription>
+						Cập nhật mật khẩu của bạn để bảo mật tài khoản.
+					</ItemDescription>
+				</ItemContent>
+				<ItemActions>
+					<Button variant='destructive' className='w-2xs'>
+						Thay đổi mật khẩu
+					</Button>
+				</ItemActions>
+			</Item>
 		</div>
 	);
 };

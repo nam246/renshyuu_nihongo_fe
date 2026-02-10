@@ -3,7 +3,7 @@
 import Link from 'next/link';
 
 import { route } from '@/lib/constant';
-import { Level } from '@/lib/types';
+import { Level } from '@/types/types';
 
 import { CircleCheckIcon, CircleHelpIcon, CircleIcon } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';

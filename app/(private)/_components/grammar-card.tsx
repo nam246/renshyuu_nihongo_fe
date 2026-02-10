@@ -1,7 +1,18 @@
 'use client';
 
+import { ItemLevelBadge } from '@/components/entities';
+import { CopyButton } from '@/components/entities/copy-button';
 import { BookmarkedButton } from '@/components/entities/bookmarked-button';
-import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import {
+	Item,
+	ItemContent,
+	ItemTitle,
+	ItemDescription,
+} from '@/components/ui/item';
+import { Separator } from '@/components/ui/separator';
+import { Level } from '@/types/types';
 import { Bookmark, Copy, Check, BookOpen } from 'lucide-react';
 import { useState } from 'react';
 
@@ -11,7 +22,7 @@ export interface GrammarItem {
 	structure: string;
 	meaning: string;
 	explanation: string;
-	level: string;
+	level: Level;
 	examples?: Array<{
 		japanese: string;
 		vietnamese: string;
@@ -57,63 +68,55 @@ const GrammarCard = ({
 	};
 
 	return (
-		<Card className='p-4 hover:shadow-lg transition-shadow'>
+		<Card>
 			{/* Header with level and bookmark */}
-			<div className='flex items-start justify-between mb-3'>
-				<span
-					className={`inline-block px-2 py-1 rounded text-xs font-semibold ${getLevelColor(
-						item.level,
-					)}`}
-				>
-					{item.level}
-				</span>
-				<BookmarkedButton
-					item={item}
-					onRemove={() => onRemove?.(item.id)}
-					onToggleBookmark={() => onToggleBookmark?.(item.id)}
+			<CardContent className='flex items-start justify-between'>
+				<ItemLevelBadge level={item.level} />
+				<BookmarkedButton 
+					itemId={item.id}
+					itemType='grammar'
 				/>
-			</div>
+			</CardContent>
 
 			{/* Grammar pattern */}
-			<div className='mb-3'>
+			<CardContent className=''>
 				<div className='flex items-start gap-2 mb-1'>
 					<BookOpen className='size-5 text-blue-600 mt-1 flex-shrink-0' />
 					<div>
-						<h3 className='text-lg font-bold text-gray-900'>{item.pattern}</h3>
-						<p className='text-sm text-gray-600 mt-1'>Ý nghĩa: {item.meaning}</p>
+						<h3 className='text-lg font-bold'>{item.pattern}</h3>
+						<p className='text-sm mt-1'>Ý nghĩa: {item.meaning}</p>
 					</div>
 				</div>
-			</div>
+			</CardContent>
 
 			{/* Structure */}
-			<div className='mb-3 pb-3 border-b border-gray-200'>
-				<p className='text-sm font-medium text-gray-700 mb-2'>Cấu trúc:</p>
+			<CardContent className=''>
+				<p className='text-sm font-medium mb-2'>Cấu trúc:</p>
 				<div className='p-2 bg-gray-50 rounded text-sm font-mono text-gray-800 break-words'>
 					{item.structure}
 				</div>
-			</div>
+			</CardContent>
+
+			<Separator />
 
 			{/* Explanation */}
-			<div className='mb-3 pb-3 border-b border-gray-200'>
-				<p className='text-sm font-medium text-gray-700 mb-2'>Giải thích:</p>
-				<p className='text-sm text-gray-600'>{item.explanation}</p>
-			</div>
+			<CardContent className=''>
+				<p className='text-sm font-medium mb-2'>Giải thích:</p>
+				<p className='text-sm'>{item.explanation}</p>
+			</CardContent>
 
 			{/* Examples if available */}
 			{item.examples && item.examples.length > 0 && (
-				<div className='mb-3 pb-3 border-b border-gray-200'>
-					<p className='text-sm font-medium text-gray-700 mb-2'>
-						Ví dụ ({item.examples.length})
-					</p>
+				<CardContent className=''>
+					<p className='text-sm font-medium mb-2'>Ví dụ ({item.examples.length})</p>
 					<div className='space-y-2'>
 						{item.examples.slice(0, 2).map((example, idx) => (
-							<div
-								key={idx}
-								className='text-sm p-2 bg-blue-50 rounded border border-blue-200'
-							>
-								<p className='font-medium text-gray-900'>{example.japanese}</p>
-								<p className='text-gray-600'>{example.vietnamese}</p>
-							</div>
+							<Item variant='outline' key={idx} className='text-sm p-2rounded border'>
+								<ItemContent>
+									<ItemTitle>{example.japanese}</ItemTitle>
+									<ItemDescription>{example.vietnamese}</ItemDescription>
+								</ItemContent>
+							</Item>
 						))}
 						{item.examples.length > 2 && (
 							<p className='text-xs text-gray-500'>
@@ -121,28 +124,15 @@ const GrammarCard = ({
 							</p>
 						)}
 					</div>
-				</div>
+				</CardContent>
 			)}
+			
+			<Separator />
 
 			{/* Actions */}
-			<div className='flex gap-2'>
-				<button
-					onClick={() => handleCopy(item.pattern)}
-					className='flex-1 flex items-center justify-center gap-1 px-3 py-2 text-sm bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors'
-				>
-					{copied ? (
-						<>
-							<Check className='size-4' />
-							<span>Đã sao chép</span>
-						</>
-					) : (
-						<>
-							<Copy className='size-4' />
-							<span>Sao chép</span>
-						</>
-					)}
-				</button>
-			</div>
+			<CardFooter className='flex gap-2'>
+				<CopyButton character={item.pattern} />
+			</CardFooter>
 		</Card>
 	);
 };

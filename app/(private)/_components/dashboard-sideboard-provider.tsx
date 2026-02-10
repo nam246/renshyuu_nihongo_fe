@@ -81,7 +81,7 @@ const menusSidebar: menuSidebarItem[] = [
 			},
 			{
 				icon: <HashIcon />,
-				title: 'Collection Question',
+				title: 'Collected Question',
 				url: '/add-question',
 			},
 			{
@@ -126,8 +126,8 @@ const menusSidebar: menuSidebarItem[] = [
 			},
 			{
 				icon: <Undo2Icon />,
-				title: 'Report & Export',
-				url: '#',
+				title: 'Activities',
+				url: '/activities',
 			},
 			{
 				icon: <SettingsIcon />,

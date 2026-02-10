@@ -1,5 +1,5 @@
-import type { Vocabulary, Lesson, Grammar, Example, Kanji } from '@/lib/types';
-import { Level, WordType } from '@/lib/types';
+import type { Vocabulary, Lesson, Grammar, Example, Kanji } from '@/types/types';
+import { Level, WordType } from '@/types/types';
 
 // ============================================
 // USER DATA

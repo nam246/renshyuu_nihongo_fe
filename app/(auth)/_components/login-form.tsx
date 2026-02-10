@@ -8,19 +8,21 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useAuth } from '@/lib/auth-context';
+// import { useAuth } from '@/lib/auth-context';
+import { signIn } from 'next-auth/react';
 
 const LoginForm = () => {
 	const router = useRouter();
-	const { login, isLoading } = useAuth();
+	// const { login, isLoading } = useAuth();
 	const [isVisible, setIsVisible] = useState(false);
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
+	const [loading, setLoading] = useState(false);
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		try {
-			await login(username, password);
+			await signIn('credentials', { username, password });
 			router.refresh();
 			router.push('/dashboard');
 		} catch (error) {
@@ -92,8 +94,8 @@ const LoginForm = () => {
 				</a>
 			</div>
 
-			<Button className='w-full' type='submit' disabled={isLoading}>
-				{isLoading ? 'Signing in...' : 'Sign in'}
+			<Button className='w-full' type='submit' disabled={loading}>
+				{loading ? 'Signing in...' : 'Sign in'}
 			</Button>
 		</form>
 	);

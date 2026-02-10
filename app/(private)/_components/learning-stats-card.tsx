@@ -1,6 +1,9 @@
 'use client';
+import type { ReactNode } from 'react';
 
-import { Card } from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+
+import { cn } from '@/lib/utils';
 import { BookOpenIcon, CheckCircle2, Clock, Target } from 'lucide-react';
 
 interface LearningStatsCardProps {
@@ -26,22 +29,23 @@ const LearningStatsCard = ({
 				: 'text-blue-600';
 
 	return (
-		<Card className='flex flex-col gap-4 p-6'>
-			<div className='flex items-center justify-between'>
-				<div className='flex h-12 w-12 items-center justify-center rounded-lg dark:bg-blue-100'>
-					<div className={`${trendColor}`}>{icon}</div>
-				</div>
-				<span className={`text-sm font-semibold ${trendColor}`}>
-					{trend === 'up' && '↑'}{' '}
-					{trend === 'down' && '↓'}
-				</span>
-			</div>
-			<div className='space-y-1'>
-				<p className='text-sm font-medium'>{label}</p>
-				<p className='text-2xl font-bold'>{value}</p>
-				{subtext && <p className='text-xs'>{subtext}</p>}
-			</div>
-		</Card>
+		<>
+			<Card className={cn('gap-4')}>
+				<CardHeader className='flex items-center'>
+					<div className='bg-primary/10 text-primary flex size-8 shrink-0 items-center justify-center rounded-md'>
+						{icon}
+					</div>
+					<span className='text-2xl'>{value}</span>
+				</CardHeader>
+				<CardContent className='flex flex-col gap-2'>
+					<span className='font-semibold'>{label}</span>
+					<p className='space-x-2'>
+						{/* <span className='text-sm'>{trend === 'up' && '↑'} {trend === 'down' && '↓'}</span> */}
+						<span className={`text-sm ${trendColor}`}>{subtext}</span>
+					</p>
+				</CardContent>
+			</Card>
+		</>
 	);
 };
 

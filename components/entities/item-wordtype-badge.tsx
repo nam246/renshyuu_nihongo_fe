@@ -1,4 +1,4 @@
-import { WordType } from '@/lib/types';
+import { WordType } from '@/types/types';
 import { Badge } from '@/components/ui/badge';
 
 export function ItemWordTypeBadge({ wordType }: { wordType: WordType }) {
@@ -19,6 +19,7 @@ export function ItemWordTypeBadge({ wordType }: { wordType: WordType }) {
 	};
 	return (
 		<Badge
+			variant='secondary'
 			className={`inline-block px-2 py-1 rounded text-xs font-medium ${getWordTypeColor(
 				wordType,
 			)}`}

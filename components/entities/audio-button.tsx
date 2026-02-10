@@ -12,7 +12,7 @@ export function AudioButton({ word }: { word: string }) {
 		}
 	};
 	return (
-		<Button variant='ghost' size='sm' onClick={() => handleSpeak(word)}>
+		<Button variant='secondary' onClick={() => handleSpeak(word)}>
 			<AudioLines />
 		</Button>
 	);

@@ -5,7 +5,7 @@ import { VocabularyCard } from '@/components/entities';
 import VocabularyFilter from './vocabulary-filter';
 import { Card } from '@/components/ui/card';
 import { BookmarkX } from 'lucide-react';
-import { Vocabulary } from '@/lib/types';
+import { Vocabulary } from '@/types/types';
 
 interface VocabularyListProps {
 	items: Vocabulary[];

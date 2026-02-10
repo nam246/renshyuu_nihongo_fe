@@ -5,7 +5,7 @@ export class ApiClient {
 
 	constructor(baseUrl?: string) {
 		this.baseUrl =
-			baseUrl || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+			baseUrl || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 	}
 
 	private getHeaders(headers?: Record<string, string>) {

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Plus, Save, X } from 'lucide-react';
+import PageHeader from '@/components/layout/page-header';
 
 interface QuestionOption {
 	text: string;
@@ -150,8 +151,8 @@ const AddQuestionPage = () => {
 				mediaFile: null,
 				mediaPreview: '',
 			});
-		} catch (err: any) {
-			setError(err.message);
+		} catch (err: Error | unknown) {
+			setError(err instanceof Error ? err.message : 'An error occurred');
 		} finally {
 			setLoading(false);
 		}
@@ -160,12 +161,10 @@ const AddQuestionPage = () => {
 	return (
 		<div className='space-y-6'>
 			{/* Header */}
-			<div>
-				<h1 className='text-3xl font-bold text-gray-900'>Thêm câu hỏi trắc nghiệm</h1>
-				<p className='text-gray-600 mt-1'>
-					Tạo một câu hỏi trắc nghiệm mới để bổ sung vào ngân hàng câu hỏi
-				</p>
-			</div>
+			<PageHeader
+				title='Thêm câu hỏi trắc nghiệm'
+				description='Tạo một câu hỏi trắc nghiệm mới để bổ sung vào ngân hàng câu hỏi'
+			/>
 
 			<form onSubmit={handleSubmit} className='space-y-6'>
 				{/* Messages */}

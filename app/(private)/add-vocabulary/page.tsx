@@ -21,7 +21,8 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select';
-import { Level } from '@/lib/types';
+import { Level } from '@/types/types';
+import PageHeader from '@/components/layout/page-header';
 
 interface VocabularyFormData {
 	word: string;
@@ -149,8 +150,8 @@ const AddVocabularyPage = () => {
 				mediaPreview: '',
 				examples: [{ japanese: '', vietnamese: '' }],
 			});
-		} catch (err: any) {
-			setError(err.message);
+		} catch (err: Error | unknown) {
+			setError(err instanceof Error ? err.message : 'An error occurred');
 		} finally {
 			setLoading(false);
 		}
@@ -159,12 +160,10 @@ const AddVocabularyPage = () => {
 	return (
 		<div className='space-y-6'>
 			{/* Header */}
-			<div>
-				<h1 className='text-3xl font-bold text-gray-900'>Thêm từ vựng mới</h1>
-				<p className='text-gray-600 mt-1'>
-					Tạo từ vựng mới để bổ sung vào thư viện học tập
-				</p>
-			</div>
+			<PageHeader
+				title='Thêm từ vựng mới'
+				description='Tạo từ vựng mới để bổ sung vào thư viện học tập'
+			/>
 
 			<form onSubmit={handleSubmit} className='space-y-6'>
 				{/* Messages */}
@@ -358,7 +357,7 @@ const AddVocabularyPage = () => {
 						{formData.examples.map((example, index) => (
 							<div key={index} className='p-4 border border-gray-200 rounded-lg'>
 								<div className='flex items-center justify-between mb-3'>
-									<p className='text-sm font-medium text-gray-700'>Ví dụ {index + 1}</p>
+									<p className='text-sm font-medium'>Ví dụ {index + 1}</p>
 									{formData.examples.length > 1 && (
 										<Button
 											variant='destructive'

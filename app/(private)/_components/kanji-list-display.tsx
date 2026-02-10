@@ -1,7 +1,8 @@
 'use client';
 
 import { useCallback, useMemo, useState } from 'react';
-import KanjiCard, { KanjiItem } from './kanji-card';
+// import KanjiCard, { KanjiItem } from './kanji-card';
+import { KanjiCard } from '@/components/entities';
 import KanjiFilter from './kanji-filter';
 import { Card } from '@/components/ui/card';
 import { BookmarkX, Loader2 } from 'lucide-react';
@@ -112,9 +113,7 @@ const KanjiListDisplay = ({
 					{filteredAndSortedItems.map((item) => (
 						<KanjiCard
 							key={item.id}
-							item={item}
-							onToggleBookmark={handleToggleBookmark}
-							onRemove={handleRemoveBookmark}
+							kanji={item}
 						/>
 					))}
 				</div>

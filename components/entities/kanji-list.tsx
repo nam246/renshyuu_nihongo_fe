@@ -1,5 +1,5 @@
 import { ItemGroup } from '@/components/ui/item';
-import { Kanji } from '@/lib/types';
+import { Kanji } from '@/types/types';
 import { KanjiCard } from './kanji-card';
 
 export function KanjiList({ kanjis }: { kanjis: Kanji[] }) {

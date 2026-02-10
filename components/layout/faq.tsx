@@ -9,32 +9,32 @@ import { PlusIcon } from "lucide-react";
 
 const faq = [
     {
-        question: "What is your return policy?",
+        question: "Renshyuu là gì?",
         answer:
             "You can return unused items in their original packaging within 30 days for a refund or exchange. Contact support for assistance.",
     },
     {
-        question: "How do I track my order?",
+        question: "Renshyuu có tính năng nổi bật gì?",
         answer:
             "Track your order using the link provided in your confirmation email, or log into your account to view tracking details.",
     },
     {
-        question: "Do you ship internationally?",
+        question: "Renshyuu phù hợp với những ai?",
         answer:
             "Yes, we ship worldwide. Shipping fees and delivery times vary by location, and customs duties may apply for some countries.",
     },
     {
-        question: "What payment methods do you accept?",
+        question: "Có cần phải trả phí để sử dụng Renshyuu?",
         answer:
             "We accept Visa, MasterCard, American Express, PayPal, Apple Pay, and Google Pay, ensuring secure payment options for all customers.",
     },
     {
-        question: "What if I receive a damaged item?",
+        question: "Các nền tảng sử dụng Renshyuu?",
         answer:
             "Please contact our support team within 48 hours of delivery with photos of the damaged item. We’ll arrange a replacement or refund.",
     },
     {
-        question: "How can I contact customer support?",
+        question: "Renshyuu lấy các nguồn bài học ở đâu?",
         answer:
             "You can reach our support team via email at support@example.com or through the live chat on our website. We're available 24/7 to assist you.",
     },
@@ -47,10 +47,10 @@ const FAQ = () => {
             className="w-full max-w-(--breakpoint-xl) mx-auto py-8 xs:py-16 px-6"
         >
             <h2 className="md:text-center text-3xl xs:text-4xl md:text-5xl leading-[1.15]! font-semibold tracking-tighter">
-                Frequently Asked Questions
+                Các câu hỏi thường gặp
             </h2>
             <p className="mt-1.5 md:text-center xs:text-lg text-muted-foreground">
-                Quick answers to common questions about our products and services.
+                Trả lời các câu hỏi thường gặp về ứng dụng và các chức năng chính.
             </p>
 
             <div className="min-h-[550px] md:min-h-[320px] xl:min-h-[300px]">

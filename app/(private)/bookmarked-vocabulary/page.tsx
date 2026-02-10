@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import VocabularyListDisplay from '../_components/vocabulary-list-display';
 import { VocabularyItem } from '../_components/vocabulary-card';
 import { BookmarkIcon } from 'lucide-react';
+import PageHeader from '@/components/layout/page-header';
 
 // Mock data - bookmarked vocabulary items
 const MOCK_BOOKMARKED_VOCABULARY: VocabularyItem[] = [
@@ -145,23 +146,16 @@ export default function BookmarkedVocabularyPage() {
 
 	const handleBookmarkChange = (id: string, bookmarked: boolean) => {
 		setBookmarkedVocab((prev) =>
-			prev.map((item) =>
-				item.id === id ? { ...item, bookmarked } : item
-			)
+			prev.map((item) => (item.id === id ? { ...item, bookmarked } : item)),
 		);
 	};
 
 	return (
 		<div>
-			<div className='mb-8'>
-				<div className='flex items-center gap-3 mb-2'>
-					<BookmarkIcon className='size-8 text-yellow-500' />
-					<h1 className='text-3xl font-bold text-gray-900'>Từ vựng đã bookmark</h1>
-				</div>
-				<p className='text-gray-600'>
-					Quản lý và ôn tập những từ vựng bạn đã đánh dấu
-				</p>
-			</div>
+			<PageHeader
+				title='Từ vựng đã bookmark'
+				description='Quản lý và ôn tập những từ vựng bạn đã đánh dấu'
+			/>
 
 			<VocabularyListDisplay
 				items={bookmarkedVocab}

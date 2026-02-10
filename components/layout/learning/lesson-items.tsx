@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { Lesson } from '@/lib/types';
+import { Lesson } from '@/types/types';
 
 import {
 	GraduationCap,
@@ -21,6 +21,7 @@ import {
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { ItemLevelBadge } from '@/components/entities';
 
 export default function LessonItem({
 	lesson,
@@ -30,7 +31,7 @@ export default function LessonItem({
 	children: React.ReactNode;
 }) {
 	return (
-		<Card className='group hover:shadow-lg transition-all duration-300 cursor-pointer'>
+		<Card className='group'>
 			<CardHeader>
 				<CardTitle className='text-xl font-bold flex items-center gap-1'>
 					<BookMarked />
@@ -43,21 +44,6 @@ export default function LessonItem({
 					</div>
 				</CardDescription>
 				<CardAction className='flex items-center gap-2'>
-					<Badge variant='outline'>{lesson.level}</Badge>
-					<Button
-						variant='outline'
-						onClick={() =>
-							toast('Item have been Bookmarked', {
-								description: 'Sunday, December 03, 2023 at 9:00 AM',
-								action: {
-									label: 'Undo',
-									onClick: () => console.log('Undo'),
-								},
-							})
-						}
-					>
-						<Bookmark className='transition-all' />
-					</Button>
 				</CardAction>
 			</CardHeader>
 
@@ -71,12 +57,12 @@ export default function LessonItem({
 			</CardContent>
 
 			<CardFooter>
-				<Link
+				{/* <Link
 					className='text-slate-400 hover:text-blue-500 hover:translate-x-1 transition-all'
 					href={`#`}
 				>
 					Xem toàn bộ bài {lesson.lessonTitle} <ChevronRight className='inline' />     
-				</Link>
+				</Link> */}
 			</CardFooter>
 		</Card>
 	);

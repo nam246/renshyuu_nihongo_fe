@@ -1,38 +1,43 @@
 'use client';
+import { signIn } from 'next-auth/react';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { EyeIcon, EyeOffIcon } from 'lucide-react';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { useAuth } from '@/lib/auth-context';
-
 export default function QuickLoginButton() {
 	const router = useRouter();
-	const { login, isLoading } = useAuth();
+	const [loading, setLoading] = useState(false);
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+		setLoading(true);
+
 		try {
-			await login('testuser1', 'password123');
-			router.refresh();
-			router.push('/dashboard');
+			const result = await signIn('credentials', {
+				username: 'admin',
+				password: 'admin',
+				redirect: false,
+			});
+
+			if (result?.error) {
+				console.log('error');
+			} else {
+				router.push('/dashboard');
+			}
 		} catch (error) {
-			console.error('Login failed:', error);
-			// Ideally show error message to user
-			alert('Login failed. Please check your credentials.');
+			alert('đã xảy ra lỗi!');
+		} finally {
+			setLoading(false);
 		}
 	};
 	return (
 		<div className='mb-6 flex flex-wrap gap-4 sm:gap-6'>
 			<Button variant='outline' className='grow' onClick={handleSubmit}>
-				Đăng nhập với quyền User
+				{loading ? 'Đang đăng nhập...' : 'Đăng nhập với quyền Admin'}
 			</Button>
 			<Button variant='outline' className='grow'>
-				Đăng nhập với quyền Admin
+				Đăng nhập với quyền User
 			</Button>
 		</div>
 	);

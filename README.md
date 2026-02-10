@@ -87,7 +87,7 @@ textBookSkillType? Grammar | Vocabulary | Kanji | Reading | Listening
 
 ### Tham khảo 1 homepage mới có cấu trúc như sau:
 
-```
+```jsx
  <>
     <Navbar />
     <Hero />

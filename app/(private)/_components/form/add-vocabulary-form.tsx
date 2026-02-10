@@ -21,7 +21,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
-import { Level } from '@/lib/types';
+import { Level } from '@/types/types';
 
 interface VocabularyFormData {
     word: string;

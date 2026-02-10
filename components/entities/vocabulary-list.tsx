@@ -1,6 +1,6 @@
 import { VocabularyCard } from './vocabulary-card';
 import { ItemGroup } from '@/components/ui/item';
-import { Vocabulary } from '@/lib/types';
+import { Vocabulary } from '@/types/types';
 
 export function VocabularyList({
 	vocabularies,

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import GrammarListDisplay from '../_components/grammar-list-display';
 import { GrammarItem } from '../_components/grammar-card';
 import { BookOpenIcon } from 'lucide-react';
+import PageHeader from '@/components/layout/page-header';
 
 // Mock data - bookmarked grammar items
 const MOCK_BOOKMARKED_GRAMMAR: GrammarItem[] = [
@@ -12,7 +13,8 @@ const MOCK_BOOKMARKED_GRAMMAR: GrammarItem[] = [
 		pattern: '〜です',
 		structure: '[Noun] です',
 		meaning: 'Là, cái',
-		explanation: 'Mẫu câu cơ bản để nói ai đó/cái gì đó là gì. Được dùng sau danh từ để khẳng định.',
+		explanation:
+			'Mẫu câu cơ bản để nói ai đó/cái gì đó là gì. Được dùng sau danh từ để khẳng định.',
 		level: 'N5',
 		examples: [
 			{
@@ -32,7 +34,8 @@ const MOCK_BOOKMARKED_GRAMMAR: GrammarItem[] = [
 		pattern: '〜ます',
 		structure: '[Verb stem] ます',
 		meaning: 'Dạng lịch sự của động từ',
-		explanation: 'Dạng lịch sự của động từ ở thì hiện tại/tương lai. Được dùng trong đối thoại trang trọng.',
+		explanation:
+			'Dạng lịch sự của động từ ở thì hiện tại/tương lai. Được dùng trong đối thoại trang trọng.',
 		level: 'N5',
 		examples: [
 			{
@@ -145,23 +148,16 @@ export default function BookmarkedGrammarPage() {
 
 	const handleBookmarkChange = (id: string, bookmarked: boolean) => {
 		setBookmarkedGrammar((prev) =>
-			prev.map((item) =>
-				item.id === id ? { ...item, bookmarked } : item
-			)
+			prev.map((item) => (item.id === id ? { ...item, bookmarked } : item)),
 		);
 	};
 
 	return (
 		<div>
-			<div className='mb-8'>
-				<div className='flex items-center gap-3 mb-2'>
-					<BookOpenIcon className='size-8 text-blue-600' />
-					<h1 className='text-3xl font-bold text-gray-900'>Ngữ pháp đã bookmark</h1>
-				</div>
-				<p className='text-gray-600'>
-					Quản lý và ôn tập những mẫu ngữ pháp bạn đã đánh dấu
-				</p>
-			</div>
+			<PageHeader
+				title='Ngữ pháp đã bookmark'
+				description='Quản lý và ôn tập những mẫu ngữ pháp bạn đã đánh dấu'
+			/>
 
 			<GrammarListDisplay
 				items={bookmarkedGrammar}

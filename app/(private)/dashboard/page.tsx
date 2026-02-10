@@ -6,6 +6,9 @@ import ProgressOverviewCard from '@/app/(private)/_components/progress-overview-
 import RecentLessonsCard from '@/app/(private)/_components/recent-lessons-card';
 import WeeklyActivityChart from '@/app/(private)/_components/weekly-activity-chart';
 import StudyTimeCard from '@/app/(private)/_components/study-time-card';
+import PageHeader from '@/components/layout/page-header';
+import TransactionDatatable from '../_components/datatable-transaction';
+import { Level } from '@/types/types';
 
 // Learning statistics data
 const learningStatsData = [
@@ -65,7 +68,7 @@ const recentLessonsData = [
 	{
 		id: '1',
 		title: 'Động từ trong tiếng Nhật',
-		level: 'N5',
+		level: Level.N5,
 		lastStudied: '2 giờ trước',
 		status: 'in-progress' as const,
 		progress: 65,
@@ -73,7 +76,7 @@ const recentLessonsData = [
 	{
 		id: '2',
 		title: 'Hiện tại và quá khứ',
-		level: 'N5',
+		level: Level.N5,
 		lastStudied: 'Hôm qua',
 		status: 'completed' as const,
 		progress: 100,
@@ -81,7 +84,7 @@ const recentLessonsData = [
 	{
 		id: '3',
 		title: 'Tính từ và trạng từ',
-		level: 'N5',
+		level: Level.N5,
 		lastStudied: '3 ngày trước',
 		status: 'in-progress' as const,
 		progress: 45,
@@ -89,7 +92,7 @@ const recentLessonsData = [
 	{
 		id: '4',
 		title: 'Câu hỏi và câu trả lời',
-		level: 'N4',
+		level: Level.N4,
 		lastStudied: 'Chưa học',
 		status: 'not-started' as const,
 		progress: 0,
@@ -111,12 +114,10 @@ const DashboardShell = () => {
 	return (
 		<div className='grid gap-6'>
 			{/* Page Title */}
-			<div>
-				<h1 className='text-3xl font-bold'>Bảng điều khiển</h1>
-				<p className='mt-2'>
-					Theo dõi tiến độ học tập và thống kê của bạn
-				</p>
-			</div>
+			<PageHeader
+				title='Bảng điều khiển'
+				description='Theo dõi tiến độ học tập và thống kê của bạn'
+			/>
 
 			{/* Learning Statistics Cards */}
 			<div className='grid gap-6 sm:grid-cols-1 md:grid-cols-3'>
@@ -132,6 +133,16 @@ const DashboardShell = () => {
 				))}
 			</div>
 
+			{/* User Statistic */}
+			<UserStatistics
+				lessonsCompleted={24}
+				vocabularyLearned={285}
+				grammarPatterns={18}
+				totalStudyHours={156}
+				currentLevel='N5'
+				streak={12}
+			/>
+
 			{/* Progress Overview and Study Time */}
 			<div className='grid gap-6 lg:grid-cols-2'>
 				<ProgressOverviewCard levels={progressLevels} />
@@ -143,21 +154,8 @@ const DashboardShell = () => {
 				/>
 			</div>
 
-			{/* Weekly Activity Chart */}
-			<WeeklyActivityChart data={weeklyActivityData} />
-
 			{/* Recent Lessons */}
 			<RecentLessonsCard lessons={recentLessonsData} />
-
-			{/* User Statistic */}
-			<UserStatistics
-				lessonsCompleted={24}
-				vocabularyLearned={285}
-				grammarPatterns={18}
-				totalStudyHours={156}
-				currentLevel='N5'
-				streak={12}
-			/>
 		</div>
 	);
 };

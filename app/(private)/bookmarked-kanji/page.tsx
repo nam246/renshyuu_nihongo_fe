@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import KanjiListDisplay from '../_components/kanji-list-display';
 import { KanjiItem } from '../_components/kanji-card';
 import { Languages } from 'lucide-react';
+import PageHeader from '@/components/layout/page-header';
 
 // Mock data - bookmarked kanji items
 const MOCK_BOOKMARKED_KANJI: KanjiItem[] = [
@@ -193,23 +194,16 @@ export default function BookmarkedKanjiPage() {
 
 	const handleBookmarkChange = (id: string, bookmarked: boolean) => {
 		setBookmarkedKanji((prev) =>
-			prev.map((item) =>
-				item.id === id ? { ...item, bookmarked } : item
-			)
+			prev.map((item) => (item.id === id ? { ...item, bookmarked } : item)),
 		);
 	};
 
 	return (
 		<div>
-			<div className='mb-8'>
-				<div className='flex items-center gap-3 mb-2'>
-					<Languages className='size-8 text-purple-600' />
-					<h1 className='text-3xl font-bold text-gray-900'>Kanji đã bookmark</h1>
-				</div>
-				<p className='text-gray-600'>
-					Quản lý và ôn tập những ký tự Kanji bạn đã đánh dấu
-				</p>
-			</div>
+			<PageHeader
+				title='Kanji đã bookmark'
+				description='Quản lý và ôn tập những ký tự Kanji bạn đã đánh dấu'
+			/>
 
 			<KanjiListDisplay
 				items={bookmarkedKanji}

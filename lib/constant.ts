@@ -5,7 +5,9 @@ export const route = {
     home: '/',
     login: '/login',
     dashboard: '/dashboard',
-    learning: '/learning',
+    vocabulary: '/vocabulary',
+    grammar: '/grammar',
+    kanji: '/kanji',
     mockTest: '/mock-test',
     practice: '/practice'
 }

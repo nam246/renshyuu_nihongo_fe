@@ -1,4 +1,4 @@
-import { Grammar } from '@/lib/types';
+import { Grammar } from '@/types/types';
 import { ItemGroup } from '@/components/ui/item';
 import { GrammarCard } from '@/components/entities/grammar-card';
 

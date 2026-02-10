@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Plus, Save, X } from 'lucide-react';
+import PageHeader from '@/components/layout/page-header';
 
 interface KanjiFormData {
 	character: string;
@@ -34,7 +35,9 @@ const AddKanjiPage = () => {
 	const [success, setSuccess] = useState('');
 
 	const handleInputChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+		e: React.ChangeEvent<
+			HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+		>,
 	) => {
 		const { name, value } = e.target;
 		setFormData((prev) => ({
@@ -47,7 +50,7 @@ const AddKanjiPage = () => {
 	const handleExampleChange = (
 		index: number,
 		field: 'word' | 'meaning',
-		value: string
+		value: string,
 	) => {
 		const newExamples = [...formData.examples];
 		newExamples[index] = {
@@ -128,8 +131,8 @@ const AddKanjiPage = () => {
 				mediaPreview: '',
 				examples: [{ word: '', meaning: '' }],
 			});
-		} catch (err: any) {
-			setError(err.message);
+		} catch (err: Error | unknown) {
+			setError(err instanceof Error ? err.message : 'An error occurred');
 		} finally {
 			setLoading(false);
 		}
@@ -138,12 +141,10 @@ const AddKanjiPage = () => {
 	return (
 		<div className='space-y-6'>
 			{/* Header */}
-			<div>
-				<h1 className='text-3xl font-bold text-gray-900'>Thêm kanji mới</h1>
-				<p className='text-gray-600 mt-1'>
-					Tạo ký tự kanji mới để bổ sung vào thư viện học tập
-				</p>
-			</div>
+			<PageHeader
+				title='Thêm kanji mới'
+				description='Tạo ký tự kanji mới để bổ sung vào thư viện học tập'
+			/>
 
 			<form onSubmit={handleSubmit} className='space-y-6'>
 				{/* Messages */}
@@ -268,53 +269,51 @@ const AddKanjiPage = () => {
 						</div>
 					</div>
 				</Card>
-			{/* Media Upload */}
-			<Card className='p-6'>
-				<h2 className='text-lg font-semibold text-gray-900 mb-4'>
-					Hình ảnh minh họa
-				</h2>
+				{/* Media Upload */}
+				<Card className='p-6'>
+					<h2 className='text-lg font-semibold text-gray-900 mb-4'>
+						Hình ảnh minh họa
+					</h2>
 
-				<div className='space-y-4'>
-					<div>
-						<label className='block text-sm font-medium text-gray-700 mb-2'>
-							Tải lên hình ảnh
-						</label>
-						<input
-							type='file'
-							accept='image/*'
-							onChange={handleMediaChange}
-							className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
-							disabled={loading}
-						/>
-						<p className='text-xs text-gray-500 mt-1'>
-							Ỗng hỗ trợ: JPG, PNG, GIF (Tối đa 5MB)
-						</p>
-					</div>
-
-					{formData.mediaPreview && (
-						<div className='relative inline-block'>
-							<img
-								src={formData.mediaPreview}
-								alt='Preview'
-								className='max-w-xs h-auto rounded-lg border border-gray-300'
+					<div className='space-y-4'>
+						<div>
+							<label className='block text-sm font-medium text-gray-700 mb-2'>
+								Tải lên hình ảnh
+							</label>
+							<input
+								type='file'
+								accept='image/*'
+								onChange={handleMediaChange}
+								className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
+								disabled={loading}
 							/>
-							<button
-								type='button'
-								onClick={removeMedia}
-								className='absolute -top-2 -right-2 p-1 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors'
-							>
-								<X className='w-4 h-4' />
-							</button>
+							<p className='text-xs text-gray-500 mt-1'>
+								Ỗng hỗ trợ: JPG, PNG, GIF (Tối đa 5MB)
+							</p>
 						</div>
-					)}
-				</div>
-			</Card>
+
+						{formData.mediaPreview && (
+							<div className='relative inline-block'>
+								<img
+									src={formData.mediaPreview}
+									alt='Preview'
+									className='max-w-xs h-auto rounded-lg border border-gray-300'
+								/>
+								<button
+									type='button'
+									onClick={removeMedia}
+									className='absolute -top-2 -right-2 p-1 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors'
+								>
+									<X className='w-4 h-4' />
+								</button>
+							</div>
+						)}
+					</div>
+				</Card>
 				{/* Examples */}
 				<Card className='p-6'>
 					<div className='flex items-center justify-between mb-4'>
-						<h2 className='text-lg font-semibold text-gray-900'>
-							Từ vựng sử dụng
-						</h2>
+						<h2 className='text-lg font-semibold text-gray-900'>Từ vựng sử dụng</h2>
 						<button
 							type='button'
 							onClick={addExample}
@@ -347,13 +346,7 @@ const AddKanjiPage = () => {
 									<input
 										type='text'
 										value={example.word}
-										onChange={(e) =>
-											handleExampleChange(
-												index,
-												'word',
-												e.target.value
-											)
-										}
+										onChange={(e) => handleExampleChange(index, 'word', e.target.value)}
 										placeholder='Từ tiếng Nhật'
 										className='px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
 										disabled={loading}
@@ -362,11 +355,7 @@ const AddKanjiPage = () => {
 										type='text'
 										value={example.meaning}
 										onChange={(e) =>
-											handleExampleChange(
-												index,
-												'meaning',
-												e.target.value
-											)
+											handleExampleChange(index, 'meaning', e.target.value)
 										}
 										placeholder='Ý nghĩa tiếng Việt'
 										className='px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'

@@ -1,15 +1,6 @@
-import {
-	BookOpen,
-	Home,
-	GraduationCap,
-	Trophy,
-	User,
-	Menu,
-	X,
-	Search,
-} from 'lucide-react';
 import Logo from '../Logo';
 import Link from 'next/link';
+import { Separator } from '../ui/separator';
 
 export default function Footer() {
 	return (
@@ -131,10 +122,10 @@ export default function Footer() {
 						</ul>
 					</div>
 				</div>
-
-				<div className='mt-8 pt-8 border-t text-center text-sm'>
-					<p>© 2024 ZipJap. All rights reserved.</p>
-				</div>
+			</div>
+			<Separator />
+			<div className='mt-4 pb-4 text-center text-sm'>
+				<p>© 2024 ZipJap. All rights reserved.</p>
 			</div>
 		</footer>
 	);
