@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
 import PageHeader from '@/components/layout/page-header';
-import LessonItem from '@/components/layout/learning/lesson-items';
+import LessonItem from '@/components/entities/lesson-items';
 import { VocabularyList } from '@/components/entities';
 import FilterBar from '../../_components/filter-bar';
 

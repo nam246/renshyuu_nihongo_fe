@@ -91,7 +91,7 @@ async function getUserByUsername(username: string) {
 	// Ví dụ mock:
 	const users = [
 		{
-			id: '1',
+			id: 'c9a0c3c2-b518-41f0-9883-27356bf7d203',
 			username: 'admin',
 			email: 'admin@example.com',
 			hashedPassword: await bcrypt.hash('admin', 10),

@@ -11,7 +11,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Lesson, Kanji, Level } from '@/types/types';
-import LessonItem from '@/components/layout/learning/lesson-items';
+import LessonItem from '@/components/entities/lesson-items';
 import { getLessons, getKanjis } from '@/lib/data';
 import { KanjiList } from '@/components/entities';
 import FilterBar from '../../_components/filter-bar';
