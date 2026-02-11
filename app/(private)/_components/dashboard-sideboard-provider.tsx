@@ -92,7 +92,7 @@ const menusSidebar: menuSidebarItem[] = [
 			{
 				icon: <ArrowRightLeftIcon />,
 				title: 'Go Learning',
-				url: '/learning',
+				url: '/grammar',
 			},
 			{
 				icon: <Clock9Icon />,
