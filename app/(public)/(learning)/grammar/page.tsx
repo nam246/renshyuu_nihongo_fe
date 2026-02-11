@@ -2,7 +2,7 @@ import { Grammar, Lesson, Level } from '@/types/types';
 import { getLessons, getGrammars } from '@/lib/data';
 
 import PageHeader from '@/components/layout/page-header';
-import LessonItem from '@/components/layout/learning/lesson-items';
+import LessonItem from '@/components/entities/lesson-items';
 import { GrammarList } from '@/components/entities';
 import FilterBar from '../../_components/filter-bar';
 
