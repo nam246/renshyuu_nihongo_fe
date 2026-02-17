@@ -1,24 +1,21 @@
 'use client';
 
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 // import KanjiCard, { KanjiItem } from './kanji-card';
 import { KanjiCard } from '@/components/entities';
 import KanjiFilter from './kanji-filter';
 import { Card } from '@/components/ui/card';
-import { BookmarkX, Loader2 } from 'lucide-react';
+import { BookmarkX } from 'lucide-react';
+import { Kanji } from '@/types/types';
 
 interface KanjiListProps {
-	items: KanjiItem[];
-	loading?: boolean;
+	items: Kanji[];
 	emptyMessage?: string;
-	onBookmarkChange?: (id: string, bookmarked: boolean) => void;
 }
 
 const KanjiListDisplay = ({
 	items,
-	loading = false,
 	emptyMessage = 'Chưa có kanji nào được bookmark',
-	onBookmarkChange,
 }: KanjiListProps) => {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [selectedLevel, setSelectedLevel] = useState('all');
@@ -34,8 +31,8 @@ const KanjiListDisplay = ({
 			result = result.filter((item) => {
 				return (
 					item.character.toLowerCase().includes(query) ||
-					item.onyomi.toLowerCase().includes(query) ||
-					item.kunyomi.toLowerCase().includes(query) ||
+					item.onyomi?.toLowerCase().includes(query) ||
+					item.kunyomi?.toLowerCase().includes(query) ||
 					item.meaning.toLowerCase().includes(query)
 				);
 			});
@@ -70,29 +67,6 @@ const KanjiListDisplay = ({
 		return result;
 	}, [items, searchQuery, selectedLevel, sortBy]);
 
-	const handleToggleBookmark = useCallback(
-		(id: string) => {
-			const item = items.find((i) => i.id === id);
-			if (item && onBookmarkChange) {
-				onBookmarkChange(id, !item.bookmarked);
-			}
-		},
-		[items, onBookmarkChange]
-	);
-
-	const handleRemoveBookmark = useCallback((id: string) => {
-		// This will be called when the bookmark button is clicked
-		// The parent component should handle the removal
-	}, []);
-
-	if (loading) {
-		return (
-			<div className='flex items-center justify-center py-12'>
-				<Loader2 className='size-8 text-blue-600 animate-spin' />
-			</div>
-		);
-	}
-
 	return (
 		<div>
 			<KanjiFilter
@@ -111,10 +85,7 @@ const KanjiListDisplay = ({
 			) : (
 				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
 					{filteredAndSortedItems.map((item) => (
-						<KanjiCard
-							key={item.id}
-							kanji={item}
-						/>
+						<KanjiCard key={item.id} kanji={item} />
 					))}
 				</div>
 			)}
@@ -122,7 +93,9 @@ const KanjiListDisplay = ({
 			{/* Show result count */}
 			{filteredAndSortedItems.length > 0 && (
 				<div className='mt-6 p-4 text-center text-sm text-gray-600'>
-					Tổng cộng: <span className='font-semibold'>{filteredAndSortedItems.length}</span> kanji
+					Tổng cộng:{' '}
+					<span className='font-semibold'>{filteredAndSortedItems.length}</span>{' '}
+					kanji
 				</div>
 			)}
 		</div>

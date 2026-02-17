@@ -107,3 +107,20 @@ export async function getKanjis() {
 		throw error;
 	}
 }
+
+export async function getBookmarked(userId: string) {
+	try {
+		const res = await fetch(`${API_URL}/bookmark/${userId}`);
+		if (!res.ok) {
+			if (res.status === 404) {
+				throw new Error('No kanjis found');
+			}
+			throw new Error(`Failed to fetch kanjis: ${res.statusText}`);
+		}
+		const data = await res.json();
+		return data;
+	} catch (error) {
+		console.log(error);
+		throw error;
+	}
+}

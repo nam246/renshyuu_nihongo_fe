@@ -1,23 +1,20 @@
 'use client';
 
 import { useCallback, useMemo, useState } from 'react';
-import GrammarCard, { GrammarItem } from './grammar-card';
+import GrammarCard from './grammar-card';
 import GrammarFilter from './grammar-filter';
 import { Card } from '@/components/ui/card';
 import { BookmarkX, Loader2 } from 'lucide-react';
+import { Grammar } from '@/types/types';
 
 interface GrammarListProps {
-	items: GrammarItem[];
-	loading?: boolean;
+	items: Grammar[];
 	emptyMessage?: string;
-	onBookmarkChange?: (id: string, bookmarked: boolean) => void;
 }
 
 const GrammarListDisplay = ({
 	items,
-	loading = false,
 	emptyMessage = 'Chưa có ngữ pháp nào được bookmark',
-	onBookmarkChange,
 }: GrammarListProps) => {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [selectedLevel, setSelectedLevel] = useState('all');
@@ -34,8 +31,8 @@ const GrammarListDisplay = ({
 				return (
 					item.pattern.toLowerCase().includes(query) ||
 					item.structure.toLowerCase().includes(query) ||
-					item.meaning.toLowerCase().includes(query) ||
-					item.explanation.toLowerCase().includes(query)
+					item.meaning?.toLowerCase().includes(query) ||
+					item.explaination?.toLowerCase().includes(query)
 				);
 			});
 		}
@@ -69,28 +66,13 @@ const GrammarListDisplay = ({
 		return result;
 	}, [items, searchQuery, selectedLevel, sortBy]);
 
-	const handleToggleBookmark = useCallback(
-		(id: string) => {
-			const item = items.find((i) => i.id === id);
-			if (item && onBookmarkChange) {
-				onBookmarkChange(id, !item.bookmarked);
-			}
-		},
-		[items, onBookmarkChange]
-	);
-
-	const handleRemoveBookmark = useCallback((id: string) => {
-		// This will be called when the bookmark button is clicked
-		// The parent component should handle the removal
-	}, []);
-
-	if (loading) {
-		return (
-			<div className='flex items-center justify-center py-12'>
-				<Loader2 className='size-8 text-blue-600 animate-spin' />
-			</div>
-		);
-	}
+	// if (loading) {
+	// 	return (
+	// 		<div className='flex items-center justify-center py-12'>
+	// 			<Loader2 className='size-8 text-blue-600 animate-spin' />
+	// 		</div>
+	// 	);
+	// }
 
 	return (
 		<div>
@@ -110,12 +92,7 @@ const GrammarListDisplay = ({
 			) : (
 				<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
 					{filteredAndSortedItems.map((item) => (
-						<GrammarCard
-							key={item.id}
-							item={item}
-							onToggleBookmark={handleToggleBookmark}
-							onRemove={handleRemoveBookmark}
-						/>
+						<GrammarCard key={item.id} item={item} />
 					))}
 				</div>
 			)}
@@ -123,7 +100,9 @@ const GrammarListDisplay = ({
 			{/* Show result count */}
 			{filteredAndSortedItems.length > 0 && (
 				<div className='mt-6 p-4 text-center text-sm text-gray-600'>
-					Tổng cộng: <span className='font-semibold'>{filteredAndSortedItems.length}</span> ngữ pháp
+					Tổng cộng:{' '}
+					<span className='font-semibold'>{filteredAndSortedItems.length}</span> ngữ
+					pháp
 				</div>
 			)}
 		</div>

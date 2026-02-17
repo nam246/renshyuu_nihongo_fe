@@ -1,6 +1,8 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
 import { Search, Filter, X } from 'lucide-react';
 import { useState } from 'react';
 
@@ -55,21 +57,21 @@ const GrammarFilter = ({
 			<div className='flex gap-2 mb-4'>
 				<div className='flex-1 relative'>
 					<Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 size-5' />
-					<input
+					<Input
 						type='text'
 						placeholder='Tìm kiếm ngữ pháp (mẫu, ý nghĩa, cấu trúc)...'
 						value={searchQuery}
 						onChange={handleSearchChange}
-						className='w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
+						className='w-full pl-10 pr-4'
 					/>
 				</div>
-				<button
+				<Button
 					onClick={() => setIsOpen(!isOpen)}
-					className='flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors'
+					className='flex items-center gap-2 transition-colors'
 				>
 					<Filter className='size-5' />
 					<span className='hidden sm:inline'>Lọc</span>
-				</button>
+				</Button>
 			</div>
 
 			{/* Expanded filter panel */}

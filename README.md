@@ -107,5 +107,3 @@ textBookSkillType? Grammar | Vocabulary | Kanji | Reading | Listening
 - new nav menu đã tham khảo tại đây https://github.com/akash3444/shadcn-ui-landing-page/blob/main/app/page.tsx
 
 ## Note
-
-- Vẫn dùng middleware.ts thay vì proxy.ts mới vì xung đột với next-auth. proxy.ts yêu cầu export default proxy còn next-auth lại export default middleware.

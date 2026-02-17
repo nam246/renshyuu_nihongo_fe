@@ -1,6 +1,6 @@
 'use client';
 import { Bookmark } from 'lucide-react';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { toast as sonnerToast } from 'sonner';
@@ -8,6 +8,10 @@ import { apiClient } from '@/lib/api-client';
 import { useCurrentUser } from '@/hooks/use-currentUser';
 
 type ItemType = 'vocabulary' | 'grammar' | 'kanji';
+
+interface BookmarkResponse {
+	isBookmarked: boolean;
+}
 
 export function BookmarkedButton({
 	itemId,
@@ -23,6 +27,31 @@ export function BookmarkedButton({
 	const { user } = useCurrentUser();
 	const [isBookmarked, setIsBookmarked] = useState(initialIsBookmarked);
 	const [isLoading, setIsLoading] = useState(false);
+	const [isCheckingStatus, setIsCheckingStatus] = useState(true);
+
+	// Fetch bookmark status when component mounts
+	useEffect(() => {
+		if (!user) {
+			setIsCheckingStatus(false);
+			return;
+		}
+
+		const fetchBookmarkStatus = async () => {
+			try {
+				const response = await apiClient.get<BookmarkResponse>(
+					`/bookmark/status/${user.id}/${itemId}/${itemType}`,
+				);
+				setIsBookmarked(response.isBookmarked);
+			} catch (error) {
+				console.error('Error checking bookmark status:', error);
+				setIsBookmarked(initialIsBookmarked);
+			} finally {
+				setIsCheckingStatus(false);
+			}
+		};
+
+		fetchBookmarkStatus();
+	}, [user, itemId, itemType, initialIsBookmarked]);
 
 	const handleToggleBookmark = useCallback(async () => {
 		if (!user) {
@@ -32,46 +61,29 @@ export function BookmarkedButton({
 
 		setIsLoading(true);
 		try {
-			if (isBookmarked) {
-				// Remove bookmark - delete all bookmarks that match this item
-				const bookmarks = await apiClient.get<any>('/bookmark');
-				const bookmarkToDelete = bookmarks.find(
-					(b: any) =>
-						b.userId === user.id &&
-						((itemType === 'vocabulary' && b.vocabularyId === itemId) ||
-							(itemType === 'grammar' && b.grammarId === itemId) ||
-							(itemType === 'kanji' && b.kanjiId === itemId))
-				);
+			const bookmarkData = {
+				userId: user.id,
+				[`${itemType}Id`]: itemId,
+			};
 
-				if (bookmarkToDelete) {
-					await apiClient.delete(`/bookmark/${bookmarkToDelete.id}`);
-					setIsBookmarked(false);
-					sonnerToast.success('Đã bỏ bookmark', {
-						description: `Xoá bookmark thành công`,
-					});
-				}
-			} else {
-				// Create bookmark
-				const bookmarkData: Record<string, any> = {
-					userId: user.id,
-				};
+			const response = await apiClient.post<BookmarkResponse>(
+				`/bookmark/toggle`,
+				bookmarkData,
+			);
 
-				if (itemType === 'vocabulary') {
-					bookmarkData.vocabularyId = itemId;
-				} else if (itemType === 'grammar') {
-					bookmarkData.grammarId = itemId;
-				} else if (itemType === 'kanji') {
-					bookmarkData.kanjiId = itemId;
-				}
+			const newBookmarkState = response.isBookmarked;
+			setIsBookmarked(newBookmarkState);
 
-				await apiClient.post(`/bookmark/${user.id}`, bookmarkData);
-				setIsBookmarked(true);
-				sonnerToast.success('Đã thêm bookmark', {
-					description: 'Bookmark thành công',
-				});
-			}
+			sonnerToast.success(
+				newBookmarkState ? 'Đã thêm bookmark' : 'Đã bỏ bookmark',
+				{
+					description: newBookmarkState
+						? 'Bookmark thành công'
+						: 'Xoá bookmark thành công',
+				},
+			);
 
-			onBookmarkChange?.(!isBookmarked);
+			onBookmarkChange?.(newBookmarkState);
 		} catch (error) {
 			console.error('Bookmark toggle error:', error);
 			sonnerToast.error('Lỗi khi thao tác bookmark', {
@@ -80,21 +92,22 @@ export function BookmarkedButton({
 		} finally {
 			setIsLoading(false);
 		}
-	}, [isBookmarked, user, itemId, itemType, onBookmarkChange]);
+	}, [user, itemId, itemType, onBookmarkChange]);
 
 	return (
 		<Button
 			variant='outline'
+			size='icon-sm'
 			onClick={handleToggleBookmark}
-			disabled={isLoading || !user}
+			disabled={isLoading || !user || isCheckingStatus}
 			className='hover:bg-gray-100 transition-colors'
 			title={isBookmarked ? 'Bỏ bookmark' : 'Thêm bookmark'}
 		>
-			{isBookmarked ? (
-				<Bookmark className=' text-yellow-500' />
-			) : (
-				<Bookmark className='text-gray-400' />
-			)}
+			<Bookmark
+				className={
+					isBookmarked ? 'text-yellow-500 fill-yellow-500' : 'text-gray-400'
+				}
+			/>
 		</Button>
 	);
 }

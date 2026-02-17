@@ -37,6 +37,8 @@ export type Grammar = {
 	level: Level;
 	examples: Example[];
 	lessonId?: string;
+	createdAt: Date;
+	updatedAt: Date;
 };
 
 export type Kanji = {
@@ -125,3 +127,12 @@ export enum ListeningContentType {
 	EXPRESSION_COMPREHENSION = 'expression_comprehension', // Nghe hiểu diễn đạt
 	QUICK_RESPONSE = 'quick_response', // Trả lời nhanh
 }
+
+export type Bookmarked = {
+	id: string;
+	userId: string;
+	vocabulary: Vocabulary;
+	grammar: Grammar;
+	kanji: Kanji;
+	createdAt: Date;
+};

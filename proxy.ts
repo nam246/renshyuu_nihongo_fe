@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-export { default } from 'next-auth/middleware';
+import { default as nextAuthMiddleware } from 'next-auth/middleware';
+
+export default nextAuthMiddleware;
 
 // This function can be marked `async` if using `await` inside
 // export function proxy(request: NextRequest) {
@@ -8,7 +10,7 @@ export { default } from 'next-auth/middleware';
 // }
 
 // Alternatively, you can use a default export:
-// export default function proxy(request: NextRequest) {}
+// export function proxy(request: NextRequest) {}
 
 export const config = {
 	matcher: [
