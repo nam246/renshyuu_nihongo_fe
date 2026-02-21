@@ -92,7 +92,15 @@ export enum Level {
 export enum WordType {
 	NOUN = 'noun',
 	VERB = 'verb',
-	ADJECTIVE = 'adjective',
+	I_ADJECTIVE = 'I_ADJECTIVE',
+	NA_ADJECTIVE = 'NA_ADJECTIVE',
+	ADVERB = 'ADVERB',
+	PARTICLE = 'PARTICLE',
+	CONJUNCTION = 'CONJUNCTION',
+	PRONOUN = 'PRONOUN',
+	EXPRESSION = 'EXPRESSION',
+	COUNTER = 'COUNTER',
+	OTHER = 'OTHER',
 }
 
 export enum Source {

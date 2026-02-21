@@ -1,12 +1,16 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
+import { toast } from 'sonner';
+import { useForm } from '@tanstack/react-form';
 import {
 	Card,
 	CardHeader,
 	CardTitle,
 	CardContent,
 	CardAction,
+	CardDescription,
 } from '@/components/ui/card';
 import { Plus, Save, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -22,156 +26,103 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select';
-import { Level } from '@/types/types';
-import PageHeader from '@/components/layout/page-header';
+import { Example, Level, Source } from '@/types/types';
 
 interface GrammarFormData {
 	pattern: string;
 	structure: string;
 	meaning: string;
 	explanation: string;
-	level: string;
+	level: Level;
 	mediaFile: File | null;
 	mediaPreview: string;
-	examples: Array<{ japanese: string; vietnamese: string }>;
+	examples: Omit<Example, 'id'>[];
 }
 
 export default function AddGrammarForm() {
-	const [formData, setFormData] = useState<GrammarFormData>({
-		pattern: '',
-		structure: '',
-		meaning: '',
-		explanation: '',
-		level: 'N5',
-		mediaFile: null,
-		mediaPreview: '',
-		examples: [{ japanese: '', vietnamese: '' }],
+	const [mediaPreview, setMediaPreview] = useState<string>('');
+
+	const form = useForm({
+		defaultValues: {
+			pattern: '',
+			structure: '',
+			meaning: '',
+			explanation: '',
+			level: Level.N5,
+			mediaFile: null as File | null,
+			mediaPreview: '',
+			examples: [{ title: '', description: '' }],
+		} as GrammarFormData,
+		onSubmit: async ({ value }) => {
+			try {
+				const payload = {
+					pattern: value.pattern,
+					structure: value.structure,
+					meaning: value.meaning,
+					explanation: value.explanation,
+					level: value.level,
+					examples: value.examples.map((ex) => ({
+						title: ex.title,
+						description: ex.description,
+					})),
+					// Note: mediaFile is ignored as backend doesn't support it yet
+				};
+
+				const response = await fetch('http://localhost:4000/grammar', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(payload),
+				});
+
+				if (!response.ok) {
+					throw new Error('Failed to create grammar');
+				}
+
+				toast.success('Thêm ngữ pháp thành công!');
+				form.reset();
+				setMediaPreview('');
+			} catch (error) {
+				console.error('Error creating grammar:', error);
+				toast.error('Có lỗi xảy ra khi thêm ngữ pháp');
+			}
+		},
 	});
 
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState('');
-	const [success, setSuccess] = useState('');
+	type FieldWithHandleChange = {
+		handleChange: (value: File | null) => void;
+	};
 
-	const handleInputChange = (
-		e: React.ChangeEvent<
-			HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-		>,
+	const handleMediaChange = (
+		e: React.ChangeEvent<HTMLInputElement>,
+		field: FieldWithHandleChange,
 	) => {
-		const { name, value } = e.target;
-		setFormData((prev) => ({
-			...prev,
-			[name]: value,
-		}));
-		setError('');
-	};
-
-	const handleExampleChange = (
-		index: number,
-		field: 'japanese' | 'vietnamese',
-		value: string,
-	) => {
-		const newExamples = [...formData.examples];
-		newExamples[index] = {
-			...newExamples[index],
-			[field]: value,
-		};
-		setFormData((prev) => ({
-			...prev,
-			examples: newExamples,
-		}));
-	};
-
-	const addExample = () => {
-		setFormData((prev) => ({
-			...prev,
-			examples: [...prev.examples, { japanese: '', vietnamese: '' }],
-		}));
-	};
-
-	const removeExample = (index: number) => {
-		setFormData((prev) => ({
-			...prev,
-			examples: prev.examples.filter((_, i) => i !== index),
-		}));
-	};
-
-	const handleMediaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0];
 		if (file) {
 			const reader = new FileReader();
 			reader.onloadend = () => {
-				setFormData((prev) => ({
-					...prev,
-					mediaFile: file,
-					mediaPreview: reader.result as string,
-				}));
+				setMediaPreview(reader.result as string);
+				field.handleChange(file);
 			};
 			reader.readAsDataURL(file);
 		}
 	};
 
-	const removeMedia = () => {
-		setFormData((prev) => ({
-			...prev,
-			mediaFile: null,
-			mediaPreview: '',
-		}));
-	};
-
-	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault();
-		setLoading(true);
-		setError('');
-		setSuccess('');
-
-		try {
-			// Validate
-			if (!formData.pattern.trim()) {
-				throw new Error('Vui lòng nhập mẫu ngữ pháp');
-			}
-			if (!formData.structure.trim()) {
-				throw new Error('Vui lòng nhập cấu trúc');
-			}
-			if (!formData.meaning.trim()) {
-				throw new Error('Vui lòng nhập ý nghĩa');
-			}
-
-			// TODO: Call API to save grammar
-			console.log('Saving grammar:', formData);
-
-			setSuccess('Thêm ngữ pháp thành công!');
-			// Reset form
-			setFormData({
-				pattern: '',
-				structure: '',
-				meaning: '',
-				explanation: '',
-				level: 'N5',
-				mediaFile: null,
-				mediaPreview: '',
-				examples: [{ japanese: '', vietnamese: '' }],
-			});
-		} catch (err: Error | unknown) {
-			setError(err instanceof Error ? err.message : 'An error occurred');
-		} finally {
-			setLoading(false);
-		}
+	const removeMedia = (field: FieldWithHandleChange) => {
+		setMediaPreview('');
+		field.handleChange(null);
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className='space-y-6'>
-			{/* Messages */}
-			{error && (
-				<div className='p-4 bg-red-100 border border-red-300 text-red-700 rounded-lg'>
-					{error}
-				</div>
-			)}
-			{success && (
-				<div className='p-4 bg-green-100 border border-green-300 text-green-700 rounded-lg'>
-					{success}
-				</div>
-			)}
-
+		<form
+			onSubmit={(e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				form.handleSubmit();
+			}}
+			className='space-y-6'
+		>
 			{/* Basic Info */}
 			<Card>
 				<CardHeader>
@@ -182,189 +133,308 @@ export default function AddGrammarForm() {
 
 				<CardContent className='grid grid-cols-1 gap-4'>
 					{/* Pattern */}
-					<div className='w-full space-y-2'>
-						<Label htmlFor=''>Mẫu ngữ pháp *</Label>
-						<Input
-							type='text'
-							name='pattern'
-							value={formData.pattern}
-							onChange={handleInputChange}
-							placeholder='例：〜です'
-							disabled={loading}
-						/>
-					</div>
+					<form.Field
+						name='pattern'
+						validators={{
+							onChange: ({ value }) =>
+								!value ? 'Vui lòng nhập mẫu ngữ pháp' : undefined,
+						}}
+					>
+						{(field) => (
+							<div className='w-full space-y-2'>
+								<Label htmlFor='pattern'>Mẫu ngữ pháp *</Label>
+								<Input
+									id='pattern'
+									name='pattern'
+									value={field.state.value}
+									onBlur={field.handleBlur}
+									onChange={(e) => field.handleChange(e.target.value)}
+									placeholder='例：〜です'
+								/>
+								{field.state.meta.errors ? (
+									<p className='text-sm text-red-500'>
+										{field.state.meta.errors.join(', ')}
+									</p>
+								) : null}
+							</div>
+						)}
+					</form.Field>
 
 					{/* Structure */}
-					<div className='w-full space-y-2'>
-						<Label htmlFor=''>Cấu trúc *</Label>
-						<Input
-							type='text'
-							name='structure'
-							value={formData.structure}
-							onChange={handleInputChange}
-							placeholder='例：[Noun] です'
-							disabled={loading}
-						/>
-						<p className='text-xs text-gray-500 mt-1'>
-							Mô tả cấu trúc sử dụng [Danh từ], [Động từ], v.v.
-						</p>
-					</div>
+					<form.Field
+						name='structure'
+						validators={{
+							onChange: ({ value }) => (!value ? 'Vui lòng nhập cấu trúc' : undefined),
+						}}
+					>
+						{(field) => (
+							<div className='w-full space-y-2'>
+								<Label htmlFor='structure'>Cấu trúc *</Label>
+								<Input
+									id='structure'
+									name='structure'
+									value={field.state.value}
+									onBlur={field.handleBlur}
+									onChange={(e) => field.handleChange(e.target.value)}
+									placeholder='例：[Noun] です'
+								/>
+								<p className='text-xs text-gray-500 mt-1'>
+									Mô tả cấu trúc sử dụng [Danh từ], [Động từ], v.v.
+								</p>
+								{field.state.meta.errors ? (
+									<p className='text-sm text-red-500'>
+										{field.state.meta.errors.join(', ')}
+									</p>
+								) : null}
+							</div>
+						)}
+					</form.Field>
 
 					{/* Meaning */}
-					<div className='w-full space-y-2'>
-						<Label htmlFor=''>Ý nghĩa *</Label>
-						<Input
-							type='text'
-							name='meaning'
-							value={formData.meaning}
-							onChange={handleInputChange}
-							placeholder='Ý nghĩa tiếng Việt'
-							disabled={loading}
-						/>
-					</div>
+					<form.Field
+						name='meaning'
+						validators={{
+							onChange: ({ value }) => (!value ? 'Vui lòng nhập ý nghĩa' : undefined),
+						}}
+					>
+						{(field) => (
+							<div className='w-full space-y-2'>
+								<Label htmlFor='meaning'>Ý nghĩa *</Label>
+								<Input
+									id='meaning'
+									name='meaning'
+									value={field.state.value}
+									onBlur={field.handleBlur}
+									onChange={(e) => field.handleChange(e.target.value)}
+									placeholder='Ý nghĩa tiếng Việt'
+								/>
+								{field.state.meta.errors ? (
+									<p className='text-sm text-red-500'>
+										{field.state.meta.errors.join(', ')}
+									</p>
+								) : null}
+							</div>
+						)}
+					</form.Field>
 
 					{/* Explanation */}
-					<div className='w-full space-y-2'>
-						<Label htmlFor=''>Giải thích chi tiết</Label>
-						<Textarea
-							name='explanation'
-							value={formData.explanation}
-							onChange={handleInputChange}
-							placeholder='Giải thích chi tiết về cách sử dụng mẫu này'
-							rows={5}
-							className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
-							disabled={loading}
-						/>
-					</div>
+					<form.Field name='explanation'>
+						{(field) => (
+							<div className='w-full space-y-2'>
+								<Label htmlFor='explanation'>Giải thích chi tiết</Label>
+								<Textarea
+									id='explanation'
+									name='explanation'
+									value={field.state.value}
+									onBlur={field.handleBlur}
+									onChange={(e) => field.handleChange(e.target.value)}
+									placeholder='Giải thích chi tiết về cách sử dụng mẫu này'
+									rows={5}
+									className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
+								/>
+							</div>
+						)}
+					</form.Field>
 
 					{/* Level */}
+					<form.Field name='level'>
+						{(field) => (
+							<div className='w-full space-y-2'>
+								<Label htmlFor='level'>Trình độ</Label>
+								<Select
+									value={field.state.value}
+									onValueChange={(value) => field.handleChange(value as Level)}
+								>
+									<SelectTrigger className='w-full'>
+										<SelectValue placeholder='Chọn trình độ' />
+									</SelectTrigger>
+									<SelectContent>
+										<SelectGroup>
+											<SelectLabel>Trình độ</SelectLabel>
+											{Object.values(Level).map((lvl, index) => (
+												<SelectItem key={index} value={lvl}>
+													{lvl}
+												</SelectItem>
+											))}
+										</SelectGroup>
+									</SelectContent>
+								</Select>
+							</div>
+						)}
+					</form.Field>
+				</CardContent>
+			</Card>
+
+			<Card>
+				<CardHeader>
+					<CardTitle>Liên kết</CardTitle>
+				</CardHeader>
+				<CardContent className='grid grid-cols-1 gap-4'>
 					<div className='w-full space-y-2'>
-						<Label htmlFor='level'>Trình độ</Label>
-						<Select
-							value={formData.level}
-							onValueChange={(value) =>
-								setFormData((prev) => ({
-									...prev,
-									level: value,
-								}))
-							}
-							disabled={loading}
-						>
+						<Label htmlFor='explanation'>Lesson</Label>
+						<Select>
+							<SelectTrigger className='w-full'>
+								<SelectValue placeholder='Chọn Lesson' />
+							</SelectTrigger>
+							<SelectContent>
+								<SelectGroup>
+									<SelectLabel>Trình độ</SelectLabel>
+									{Object.values(Source).map((src, index) => (
+										<SelectItem key={index} value={src}>
+											{src}
+										</SelectItem>
+									))}
+								</SelectGroup>
+							</SelectContent>
+						</Select>
+					</div>
+					<div className='w-full space-y-2'>
+						<Label htmlFor='explanation'>Nguồn sách giáo khoa</Label>
+						<Select>
 							<SelectTrigger className='w-full'>
 								<SelectValue placeholder='Chọn trình độ' />
 							</SelectTrigger>
 							<SelectContent>
 								<SelectGroup>
 									<SelectLabel>Trình độ</SelectLabel>
-									<SelectItem value={Level.N5}>{Level.N5}</SelectItem>
-									<SelectItem value={Level.N4}>{Level.N4}</SelectItem>
-									<SelectItem value={Level.N3}>{Level.N3}</SelectItem>
-									<SelectItem value={Level.N2}>{Level.N2}</SelectItem>
-									<SelectItem value={Level.N1}>{Level.N1}</SelectItem>
+									{Object.values(Source).map((src, index) => (
+										<SelectItem key={index} value={src}>
+											{src}
+										</SelectItem>
+									))}
 								</SelectGroup>
 							</SelectContent>
 						</Select>
 					</div>
 				</CardContent>
 			</Card>
-			{/* Media Upload */}
+
+			{/* Media Upload (UI Only) */}
 			<Card>
 				<CardHeader>
 					<CardTitle>Hình ảnh minh họa</CardTitle>
 				</CardHeader>
 
 				<CardContent>
-					<div className='w-full space-y-4'>
-						<Label htmlFor=''>Tải lên hình ảnh</Label>
-						<Input
-							type='file'
-							accept='image/*'
-							onChange={handleMediaChange}
-							disabled={loading}
-						/>
-						<p className='text-xs text-gray-500 mt-1'>
-							Ỗng hỗ trợ: JPG, PNG, GIF (Tối đa 5MB)
-						</p>
-					</div>
-
-					{formData.mediaPreview && (
-						<div className='relative inline-block'>
-							<img
-								src={formData.mediaPreview}
-								alt='Preview'
-								className='max-w-xs h-auto rounded-lg border border-gray-300'
-							/>
-							<button
-								type='button'
-								onClick={removeMedia}
-								className='absolute -top-2 -right-2 p-1 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors'
-							>
-								<X className='w-4 h-4' />
-							</button>
-						</div>
-					)}
+					<form.Field name='mediaFile'>
+						{(field) => (
+							<div className='w-full space-y-4'>
+								<Label>Tải lên hình ảnh</Label>
+								<Input
+									type='file'
+									accept='image/*'
+									onChange={(e) => handleMediaChange(e, field)}
+								/>
+								<CardDescription>Hỗ trợ: JPG, PNG, GIF (Tối đa 5MB)</CardDescription>
+								{mediaPreview && (
+									<div className='relative inline-block mt-2'>
+										<Image
+											src={mediaPreview}
+											alt='Preview'
+											width={200}
+											height={200}
+											className='max-w-xs h-auto rounded-lg border border-gray-300'
+										/>
+										<Button
+											variant='destructive'
+											type='button'
+											onClick={() => removeMedia(field)}
+											className='absolute -top-2 -right-2'
+										>
+											<X className='w-4 h-4' />
+										</Button>
+									</div>
+								)}
+							</div>
+						)}
+					</form.Field>
 				</CardContent>
 			</Card>
+
 			{/* Examples */}
 			<Card>
-				<CardHeader>
+				<CardHeader className='flex flex-row items-center justify-between'>
 					<CardTitle>Ví dụ</CardTitle>
-					<CardAction>
-						<Button variant={'outline'} type='button' onClick={addExample}>
-							<Plus className='w-4 h-4' />
-							Thêm ví dụ
-						</Button>
-					</CardAction>
+					<form.Field name='examples' mode='array'>
+						{(field) => (
+							<Button
+								variant={'outline'}
+								type='button'
+								onClick={() => field.pushValue({ title: '', description: '' })}
+							>
+								<Plus />
+								Thêm ví dụ
+							</Button>
+						)}
+					</form.Field>
 				</CardHeader>
 
 				<CardContent className='space-y-4'>
-					{formData.examples.map((example, index) => (
-						<div key={index} className='p-4 border border-gray-200 rounded-lg'>
-							<div className='flex items-center justify-between mb-3'>
-								<p className='text-sm font-medium text-gray-700'>Ví dụ {index + 1}</p>
-								{formData.examples.length > 1 && (
-									<Button
-										variant='destructive'
-										type='button'
-										onClick={() => removeExample(index)}
-									>
-										<X className='w-4 h-4' />
-									</Button>
-								)}
-							</div>
+					<form.Field name='examples' mode='array'>
+						{(field) => (
+							<>
+								{field.state.value.map((_, index) => (
+									<Card key={index}>
+										<CardHeader>
+											<CardTitle className='text-sm font-medium'>
+												Ví dụ {index + 1}
+											</CardTitle>
 
-							<div className='grid grid-cols-1 md:grid-cols-2 gap-3'>
-								<Input
-									type='text'
-									value={example.japanese}
-									onChange={(e) =>
-										handleExampleChange(index, 'japanese', e.target.value)
-									}
-									placeholder='Câu tiếng Nhật'
-									disabled={loading}
-								/>
-								<Input
-									type='text'
-									value={example.vietnamese}
-									onChange={(e) =>
-										handleExampleChange(index, 'vietnamese', e.target.value)
-									}
-									placeholder='Dịch tiếng Việt'
-									disabled={loading}
-								/>
-							</div>
-						</div>
-					))}
+											<CardAction>
+												{field.state.value.length > 1 && (
+													<Button
+														variant='destructive'
+														type='button'
+														size='icon'
+														onClick={() => field.removeValue(index)}
+													>
+														<X />
+													</Button>
+												)}
+											</CardAction>
+										</CardHeader>
+
+										<CardContent className='grid grid-cols-1 md:grid-cols-2 gap-3'>
+											<form.Field name={`examples[${index}].title`}>
+												{(subField) => (
+													<Input
+														value={subField.state.value}
+														onBlur={subField.handleBlur}
+														onChange={(e) => subField.handleChange(e.target.value)}
+														placeholder='Câu tiếng Nhật'
+													/>
+												)}
+											</form.Field>
+											<form.Field name={`examples[${index}].description`}>
+												{(subField) => (
+													<Input
+														value={subField.state.value}
+														onBlur={subField.handleBlur}
+														onChange={(e) => subField.handleChange(e.target.value)}
+														placeholder='Dịch tiếng Việt'
+													/>
+												)}
+											</form.Field>
+										</CardContent>
+									</Card>
+								))}
+							</>
+						)}
+					</form.Field>
 				</CardContent>
 			</Card>
 
 			{/* Submit Button */}
 			<div className='flex gap-3'>
-				<Button variant='default' type='submit' disabled={loading}>
-					<Save className='w-4 h-4' />
-					{loading ? 'Đang lưu...' : 'Lưu ngữ pháp'}
-				</Button>
-				<Button variant='secondary' type='button'>
+				<form.Subscribe selector={(state) => [state.canSubmit, state.isSubmitting]}>
+					{([canSubmit, isSubmitting]) => (
+						<Button variant='default' type='submit' disabled={!canSubmit}>
+							<Save className='w-4 h-4 mr-2' />
+							{isSubmitting ? 'Đang lưu...' : 'Lưu ngữ pháp'}
+						</Button>
+					)}
+				</form.Subscribe>
+				<Button variant='secondary' type='button' onClick={() => form.reset()}>
 					Hủy
 				</Button>
 			</div>
