@@ -1,4 +1,7 @@
-import { BookOpenIcon, CheckCircle2, Clock, TrendingUp } from 'lucide-react';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/lib/auth';
+import { getDashboardStats } from '@/lib/data';
+import { BookOpenIcon, CheckCircle2, TrendingUp } from 'lucide-react';
 
 import UserStatistics from '../_components/user-statistics';
 import LearningStatsCard from '@/app/(private)/_components/learning-stats-card';
@@ -10,107 +13,103 @@ import PageHeader from '@/components/layout/page-header';
 import TransactionDatatable from '../_components/datatable-transaction';
 import { Level } from '@/types/types';
 
-// Learning statistics data
-const learningStatsData = [
-	{
-		icon: <BookOpenIcon className='size-5' />,
-		label: 'Bài học hoàn thành',
-		value: '24',
-		subtext: '+3 bài tuần này',
-		trend: 'up' as const,
-	},
-	{
-		icon: <CheckCircle2 className='size-5' />,
-		label: 'Từ vựng đã học',
-		value: '285',
-		subtext: '+45 từ tuần này',
-		trend: 'up' as const,
-	},
-	{
-		icon: <TrendingUp className='size-5' />,
-		label: 'Ngữ pháp',
-		value: '18',
-		subtext: '+2 mẫu tuần này',
-		trend: 'neutral' as const,
-	},
-];
+interface DashboardStats {
+	learningStats: {
+		lessonsCompleted: number;
+		vocabularyLearned: number;
+		grammarPatterns: number;
+		totalLessons: number;
+		totalVocab: number;
+		totalGrammar: number;
+	};
+	progressLevels: {
+		level: string;
+		total: number;
+		completed: number;
+	}[];
+	recentLessons: {
+		id: string;
+		title: string;
+		level: Level;
+		lastStudied: string;
+		status: 'in-progress' | 'completed' | 'not-started';
+		progress: number;
+	}[];
+	weeklyActivity: {
+		day: string;
+		lessons: number;
+		vocabulary: number;
+		grammar: number;
+	}[];
+}
 
-// Progress by level
-const progressLevels = [
-	{
-		level: 'N5 (Sơ cấp)',
-		total: 10,
-		completed: 8,
-		color: 'bg-blue-500',
-	},
-	{
-		level: 'N4 (Sơ trung cấp)',
-		total: 10,
-		completed: 6,
-		color: 'bg-green-500',
-	},
-	{
-		level: 'N3 (Trung cấp)',
-		total: 8,
-		completed: 3,
-		color: 'bg-yellow-500',
-	},
-	{
-		level: 'N2 (Trung cao cấp)',
-		total: 6,
-		completed: 0,
-		color: 'bg-orange-500',
-	},
-];
+export default async function DashboardPage() {
+	const session = await getServerSession(authOptions);
 
-// Recent lessons
-const recentLessonsData = [
-	{
-		id: '1',
-		title: 'Động từ trong tiếng Nhật',
-		level: Level.N5,
-		lastStudied: '2 giờ trước',
-		status: 'in-progress' as const,
-		progress: 65,
-	},
-	{
-		id: '2',
-		title: 'Hiện tại và quá khứ',
-		level: Level.N5,
-		lastStudied: 'Hôm qua',
-		status: 'completed' as const,
-		progress: 100,
-	},
-	{
-		id: '3',
-		title: 'Tính từ và trạng từ',
-		level: Level.N5,
-		lastStudied: '3 ngày trước',
-		status: 'in-progress' as const,
-		progress: 45,
-	},
-	{
-		id: '4',
-		title: 'Câu hỏi và câu trả lời',
-		level: Level.N4,
-		lastStudied: 'Chưa học',
-		status: 'not-started' as const,
-		progress: 0,
-	},
-];
+	if (!session?.user?.id) {
+		return (
+			<div className='p-8 text-center'>
+				Vui lòng đăng nhập để xem bảng điều khiển.
+			</div>
+		);
+	}
 
-// Weekly activity data
-const weeklyActivityData = [
-	{ day: 'T2', lessons: 3, vocabulary: 15, grammar: 2 },
-	{ day: 'T3', lessons: 2, vocabulary: 12, grammar: 3 },
-	{ day: 'T4', lessons: 4, vocabulary: 18, grammar: 4 },
-	{ day: 'T5', lessons: 3, vocabulary: 14, grammar: 2 },
-	{ day: 'T6', lessons: 5, vocabulary: 20, grammar: 5 },
-	{ day: 'T7', lessons: 2, vocabulary: 10, grammar: 1 },
-	{ day: 'CN', lessons: 1, vocabulary: 8, grammar: 0 },
-];
+	let stats: DashboardStats | null = null;
+	try {
+		stats = await getDashboardStats(session.user.id);
+	} catch (error) {
+		console.error('Failed to fetch dashboard stats:', error);
+	}
 
-const DashboardShell = () => {
+	if (!stats) {
+		return (
+			<div className='p-8 text-center text-red-500'>
+				Không thể tải dữ liệu bảng điều khiển. Vui lòng thử lại sau.
+			</div>
+		);
+	}
+
+	// Learning statistics data mapped from real data
+	const learningStatsData = [
+		{
+			icon: <BookOpenIcon className='size-5' />,
+			label: 'Bài học hoàn thành',
+			value: stats.learningStats.lessonsCompleted.toString(),
+			subtext: `Trong tổng số ${stats.learningStats.totalLessons} bài`,
+			trend: 'up' as const,
+		},
+		{
+			icon: <CheckCircle2 className='size-5' />,
+			label: 'Từ vựng đã học',
+			value: stats.learningStats.vocabularyLearned.toString(),
+			subtext: `Trong tổng số ${stats.learningStats.totalVocab} từ`,
+			trend: 'up' as const,
+		},
+		{
+			icon: <TrendingUp className='size-5' />,
+			label: 'Ngữ pháp',
+			value: stats.learningStats.grammarPatterns.toString(),
+			subtext: `Trong tổng số ${stats.learningStats.totalGrammar} mẫu`,
+			trend: 'neutral' as const,
+		},
+	];
+
+	// Progress by level with colors
+	const levelColors: Record<string, string> = {
+		N5: 'bg-blue-500',
+		N4: 'bg-green-500',
+		N3: 'bg-yellow-500',
+		N2: 'bg-orange-500',
+		N1: 'bg-red-500',
+	};
+
+	const progressLevels = stats.progressLevels.map((pl) => ({
+		level: pl.level,
+		total: pl.total,
+		completed: pl.completed,
+		color: levelColors[pl.level] || 'bg-gray-500',
+	}));
+
 	return (
 		<div className='grid gap-6'>
 			{/* Page Title */}
@@ -135,29 +134,27 @@ const DashboardShell = () => {
 
 			{/* User Statistic */}
 			<UserStatistics
-				lessonsCompleted={24}
-				vocabularyLearned={285}
-				grammarPatterns={18}
-				totalStudyHours={156}
-				currentLevel='N5'
-				streak={12}
+				lessonsCompleted={stats.learningStats.lessonsCompleted}
+				vocabularyLearned={stats.learningStats.vocabularyLearned}
+				grammarPatterns={stats.learningStats.grammarPatterns}
+				totalStudyHours={0} // Still placeholder
+				currentLevel='N5' // Still placeholder
+				streak={0} // Still placeholder
 			/>
 
 			{/* Progress Overview and Study Time */}
 			<div className='grid gap-6 lg:grid-cols-2'>
 				<ProgressOverviewCard levels={progressLevels} />
 				<StudyTimeCard
-					todayMinutes={145}
-					weekMinutes={890}
-					monthMinutes={3245}
-					weekTrend={12}
+					todayMinutes={0}
+					weekMinutes={0}
+					monthMinutes={0}
+					weekTrend={0}
 				/>
 			</div>
 
 			{/* Recent Lessons */}
-			<RecentLessonsCard lessons={recentLessonsData} />
+			<RecentLessonsCard lessons={stats.recentLessons} />
 		</div>
 	);
-};
-
-export default DashboardShell;
+}

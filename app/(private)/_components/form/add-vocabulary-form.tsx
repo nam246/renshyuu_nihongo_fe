@@ -25,7 +25,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select';
-import { Example, Level, WordType } from '@/types/types';
+import { Example, Level, WordType, Source } from '@/types/types';
 
 interface VocabularyFormData {
 	word: string;
@@ -137,9 +137,7 @@ export function AddVocabularyForm({ lessonId }: VocabularyFormProps) {
 			{/* Basic Info */}
 			<Card>
 				<CardHeader>
-					<CardTitle className='text-lg font-semibold text-gray-900 mb-4'>
-						Thông tin cơ bản
-					</CardTitle>
+					<CardTitle>Thông tin cơ bản</CardTitle>
 				</CardHeader>
 
 				<CardContent className='grid grid-cols-1 md:grid-cols-2 gap-4'>
@@ -275,7 +273,9 @@ export function AddVocabularyForm({ lessonId }: VocabularyFormProps) {
 										<SelectGroup>
 											<SelectLabel>Trình độ</SelectLabel>
 											{Object.values(Level).map((lvl, index) => (
-												<SelectItem key={index} value={lvl}>{lvl}</SelectItem>
+												<SelectItem key={index} value={lvl}>
+													{lvl}
+												</SelectItem>
 											))}
 										</SelectGroup>
 									</SelectContent>
@@ -283,6 +283,50 @@ export function AddVocabularyForm({ lessonId }: VocabularyFormProps) {
 							</div>
 						)}
 					</form.Field>
+				</CardContent>
+			</Card>
+
+			<Card>
+				<CardHeader>
+					<CardTitle>Liên kết</CardTitle>
+				</CardHeader>
+				<CardContent className='grid grid-cols-1 gap-4'>
+					<div className='w-full space-y-2'>
+						<Label htmlFor='explanation'>Lesson</Label>
+						<Select>
+							<SelectTrigger className='w-full'>
+								<SelectValue placeholder='Chọn Lesson' />
+							</SelectTrigger>
+							<SelectContent>
+								<SelectGroup>
+									<SelectLabel>Trình độ</SelectLabel>
+									{Object.values(Source).map((src, index) => (
+										<SelectItem key={index} value={src}>
+											{src}
+										</SelectItem>
+									))}
+								</SelectGroup>
+							</SelectContent>
+						</Select>
+					</div>
+					<div className='w-full space-y-2'>
+						<Label htmlFor='explanation'>Nguồn sách giáo khoa</Label>
+						<Select>
+							<SelectTrigger className='w-full'>
+								<SelectValue placeholder='Chọn trình độ' />
+							</SelectTrigger>
+							<SelectContent>
+								<SelectGroup>
+									<SelectLabel>Trình độ</SelectLabel>
+									{Object.values(Source).map((src, index) => (
+										<SelectItem key={index} value={src}>
+											{src}
+										</SelectItem>
+									))}
+								</SelectGroup>
+							</SelectContent>
+						</Select>
+					</div>
 				</CardContent>
 			</Card>
 

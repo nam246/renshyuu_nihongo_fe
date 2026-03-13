@@ -18,22 +18,41 @@ const LoginForm = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState('');
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+		setLoading(true);
+		setError('');
+
 		try {
-			await signIn('credentials', { username, password });
-			router.refresh();
-			router.push('/dashboard');
+			const res = await signIn('credentials', {
+				username,
+				password,
+				redirect: false,
+			});
+
+			if (res?.error) {
+				setError('Tên đăng nhập hoặc mật khẩu không chính xác.');
+			} else if (res?.ok) {
+				router.refresh();
+				router.push('/dashboard');
+			}
 		} catch (error) {
 			console.error('Login failed:', error);
-			// Ideally show error message to user
-			alert('Login failed. Please check your credentials.');
+			setError('Đã xảy ra lỗi, vui lòng thử lại sau.');
+		} finally {
+			setLoading(false);
 		}
 	};
 
 	return (
 		<form className='space-y-4' onSubmit={handleSubmit}>
+			{error && (
+				<div className='p-3 text-sm font-medium text-destructive bg-destructive/10 rounded-md'>
+					{error}
+				</div>
+			)}
 			{/* Username */}
 			<div className='space-y-1'>
 				<Label htmlFor='username' className='leading-5'>

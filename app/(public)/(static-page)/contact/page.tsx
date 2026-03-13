@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import PageHeader from '../_components/page-header';
+import PageHeader from '@/components/layout/page-header';
 
 type ContactInfo = {
 	title: string;

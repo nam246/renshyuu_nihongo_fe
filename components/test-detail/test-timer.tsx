@@ -28,7 +28,7 @@ export default function TestTimer({ timeLeft }: TestTimerProps) {
 				<span
 					className={cn(
 						'font-mono text-lg font-semibold',
-						isLowTime && 'text-red-600 animate-pulse',
+						isLowTime ? 'text-red-600 animate-pulse' : '',
 					)}
 				>
 					{String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
@@ -37,7 +37,7 @@ export default function TestTimer({ timeLeft }: TestTimerProps) {
 
 			<Progress
 				value={progress}
-				className={cn('h-1', isLowTime && 'bg-red-100 [&>div]:bg-red-600')}
+				className={cn('h-1', isLowTime ? 'bg-red-100 [&>div]:bg-red-600' : '')}
 			/>
 
 			{isLowTime && (

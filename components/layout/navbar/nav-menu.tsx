@@ -37,27 +37,27 @@ const learningMenuItems: {
             items: [
                 {
                     level: Level.N5,
-                    href: `${route.learning}/n5/grammar`,
+                    href: `/grammar?level=N5`,
                     description: 'Minna no Nihongo',
                 },
                 {
                     level: Level.N4,
-                    href: `${route.learning}/n4/grammar`,
+                    href: `/grammar?level=N4`,
                     description: 'Minna no Nihongo',
                 },
                 {
                     level: Level.N3,
-                    href: `${route.learning}/n3/grammar`,
+                    href: `/grammar?level=N3`,
                     description: 'Soumatome',
                 },
                 {
                     level: Level.N2,
-                    href: `${route.learning}/n2/grammar`,
+                    href: `/grammar?level=N2`,
                     description: 'Soumatome',
                 },
                 {
                     level: Level.N1,
-                    href: `${route.learning}/n1/grammar`,
+                    href: `/grammar?level=N1`,
                     description: 'Soumatome',
                 },
             ],
@@ -67,27 +67,27 @@ const learningMenuItems: {
             items: [
                 {
                     level: Level.N5,
-                    href: `${route.learning}/n5/vocabulary`,
+                    href: `/vocabulary?level=${Level.N5}`,
                     description: 'Minna no Nihongo',
                 },
                 {
                     level: Level.N4,
-                    href: `${route.learning}/n4/vocabulary`,
+                    href: `/vocabulary?level=${Level.N4}`,
                     description: 'Minna no Nihongo',
                 },
                 {
                     level: Level.N3,
-                    href: `${route.learning}/n3/vocabulary`,
+                    href: `/vocabulary?level=${Level.N3}`,
                     description: 'Soumatome',
                 },
                 {
                     level: Level.N2,
-                    href: `${route.learning}/n2/vocabulary`,
+                    href: `/vocabulary?level=${Level.N2}`,
                     description: 'Soumatome',
                 },
                 {
                     level: Level.N1,
-                    href: `${route.learning}/n1/vocabulary`,
+                    href: `/vocabulary?level=${Level.N1}`,
                     description: 'Soumatome',
                 },
             ],
@@ -97,39 +97,33 @@ const learningMenuItems: {
             items: [
                 {
                     level: Level.N5,
-                    href: `${route.learning}/n5/kanji`,
+                    href: `kanji?level=${Level.N5}`,
                     description: 'Minna no Nihongo',
                 },
                 {
                     level: Level.N4,
-                    href: `${route.learning}/n4/kanji`,
+                    href: `kanji?level=${Level.N4}`,
                     description: 'Minna no Nihongo',
                 },
                 {
                     level: Level.N3,
-                    href: `${route.learning}/n3/kanji`,
+                    href: `kanji?level=${Level.N3}`,
                     description: 'Soumatome',
                 },
                 {
                     level: Level.N2,
-                    href: `${route.learning}/n2/kanji`,
+                    href: `kanji?level=${Level.N2}`,
                     description: 'Soumatome',
                 },
                 {
                     level: Level.N1,
-                    href: `${route.learning}/n1/kanji`,
+                    href: `kanji?level=${Level.N1}`,
                     description: 'Soumatome',
                 },
             ],
         },
     ];
 
-const navLinks = [
-    { href: route.home, title: 'Trang chủ' },
-    { href: route.learning, title: 'Học tập' },
-    { href: route.practice, title: 'Luyện tập' },
-    { href: route.mockTest, title: 'Bảng xếp hạng' },
-];
 import { NavigationMenuProps } from "@radix-ui/react-navigation-menu";
 
 export const NavMenu = (props: NavigationMenuProps) => (

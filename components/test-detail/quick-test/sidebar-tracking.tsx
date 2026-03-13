@@ -3,13 +3,15 @@
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle2, Flag, Circle } from 'lucide-react';
+import { CheckCircle2, Flag } from 'lucide-react';
 import { cn } from '@/lib/utils';
+
+import { AnswerOption } from '@/types/types';
 
 interface Question {
 	id: string;
 	answered: boolean;
-	userAnswer: number | null;
+	userAnswer: AnswerOption | null;
 	isFlagged: boolean;
 }
 
@@ -31,7 +33,7 @@ export default function SidebarTracking({
 	totalQuestions,
 }: SidebarTrackingProps) {
 	return (
-		<div className='w-64 border-r bg-card flex flex-col'>
+		<div className='bg-card flex flex-col'>
 			{/* Header */}
 			<div className='p-4 border-b'>
 				<div className='flex items-center justify-between mt-2 text-sm text-muted-foreground'>
@@ -46,30 +48,32 @@ export default function SidebarTracking({
 
 			{/* Questions Grid */}
 			<ScrollArea className='flex-1 p-4'>
-				<div className='grid grid-cols-5 gap-2'>
+				<div className='grid grid-cols-5 gap-2 p-1'>
 					{questions.map((question, index) => (
 						<Button
 							key={question.id}
 							variant='outline'
 							size='sm'
 							className={cn(
-								'h-10 w-10 p-0 relative',
+								'h-9 w-9 p-0 relative transition-all duration-200 hover:scale-105',
 								currentQuestionIndex === index && 'ring-2 ring-primary',
-								question.answered && 'bg-green-100 border-green-300 hover:bg-green-200',
-								question.isFlagged && 'border-orange-300',
+								question.answered &&
+									'bg-green-50 border-green-200 text-green-700 hover:bg-green-100',
+								question.isFlagged &&
+									!question.answered &&
+									'border-orange-300 bg-orange-50/30',
 							)}
 							onClick={() => onNavigate(index)}
 						>
-							{question.answered ? (
-								<CheckCircle2 className='h-4 w-4 text-green-600' />
-							) : (
-								<Circle className='h-4 w-4' />
-							)}
-							<span className='absolute -top-1 -right-1 text-xs font-medium'>
-								{index + 1}
-							</span>
+							<span className='text-xs font-semibold'>{index + 1}</span>
 							{question.isFlagged && (
 								<Flag className='absolute -bottom-1 -right-1 h-3 w-3 text-orange-500' />
+							)}
+							{question.answered && (
+								<CheckCircle2 className='absolute -top-1 -right-1 h-3 w-3 text-green-600 bg-white rounded-full p-0.5 shadow-sm' />
+							)}
+							{question.isFlagged && (
+								<Flag className='absolute -bottom-1 -right-1 h-3 w-3 text-orange-500 bg-white rounded-full p-0.5 shadow-sm' />
 							)}
 						</Button>
 					))}

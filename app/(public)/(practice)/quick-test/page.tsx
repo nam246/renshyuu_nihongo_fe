@@ -1,4 +1,4 @@
-import { Level } from '@/types/types';
+import { Level, JLPTSection, QuestionType } from '@/types/types';
 import { ChevronRight } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import {
@@ -8,7 +8,6 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select';
-import { Search } from 'lucide-react';
 import {
 	Card,
 	CardAction,
@@ -18,32 +17,27 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
 import PageHeader from '@/components/layout/page-header';
 import { ItemLevelBadge } from '@/components/entities';
-import TestDetail from '../../../../components/test-detail/test-detail';
+import TestDetail from '../../../../components/test-detail/quick-test/test-detail';
 
-const mockQuestions: Array<{
-	id: string;
-	question: string;
-	options: string[];
-	correctAnswer: number;
-	explanation: string;
-	difficulty: string;
-	type: string;
-	answered: boolean;
-	userAnswer: number | null;
-	isFlagged: boolean;
-}> = [
+const mockQuestions: any[] = [
 	{
 		id: '1',
 		question:
-			'「＿＿＿」の言葉の読み方として最もよいものを、１・２・３・４から一つ選びなさい。\n明日の会議はとても＿＿＿です。',
-		options: ['重要', '重大', '重点', '重宝'],
-		correctAnswer: 0,
+			'「＿＿＿」の言葉の読み方 olarak tốt nhất là một trong 1, 2, 3, 4.\n明日の会議はとても＿＿＿です。',
+		options: {
+			a: '重要',
+			b: '重大',
+			c: '重点',
+			d: '重宝',
+		},
+		correctAnswer: 'a',
 		explanation: '「重要」は「じゅうよう」と読み、「大切なこと」を意味します。',
-		difficulty: 'easy',
-		type: 'vocabulary',
+		level: Level.N5,
+		questionType: QuestionType.KANJI_READING,
+		section: '文字・語彙' as JLPTSection,
+		description: 'Cách đọc Hán tự',
 		answered: false,
 		userAnswer: null,
 		isFlagged: false,
@@ -51,12 +45,19 @@ const mockQuestions: Array<{
 	{
 		id: '2',
 		question:
-			'次の文の＿＿＿に入れるのに最もよいものを、１・２・３・４から一つ選びなさい。\nお腹が空いたので、何か＿＿＿。',
-		options: ['食べたい', '食べておく', '食べるもの', '食べよう'],
-		correctAnswer: 3,
+			'Tiếp theo là từ điền vào chỗ trống tốt nhất.\nお腹が空いたので、何か＿＿＿。',
+		options: {
+			a: '食べたい',
+			b: '食べておく',
+			c: '食べるもの',
+			d: '食べよう',
+		},
+		correctAnswer: 'd',
 		explanation: '「〜よう」は意志や提案を表す表現です。',
-		difficulty: 'medium',
-		type: 'grammar',
+		level: Level.N5,
+		questionType: QuestionType.GRAMMAR_SELECT,
+		section: '文法' as JLPTSection,
+		description: 'Ngữ pháp trong câu',
 		answered: false,
 		userAnswer: null,
 		isFlagged: false,
@@ -70,10 +71,10 @@ export default async function QuickTestListPage() {
 			<PageHeader title='Chọn level làm bài thi' description='Danh sách bài thi' />
 			<div className='mb-8 space-y-4'>
 				<div className='flex flex-col sm:flex-row gap-4'>
-					<div className='relative flex-1'>
+					{/* <div className='relative flex-1'>
 						<Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4' />
 						<Input placeholder='Tìm kiếm...' className='pl-10' />
-					</div>
+					</div> */}
 					<div className='flex gap-2'>
 						<Select>
 							<SelectTrigger className='w-[180px]'>
@@ -81,30 +82,18 @@ export default async function QuickTestListPage() {
 							</SelectTrigger>
 							<SelectContent>
 								<SelectItem value='all'>Tất cả cấp độ</SelectItem>
-								<SelectItem value='n5'>N5</SelectItem>
-								<SelectItem value='n4'>N4</SelectItem>
-								<SelectItem value='n3'>N3</SelectItem>
-								<SelectItem value='n2'>N2</SelectItem>
-								<SelectItem value='n1'>N1</SelectItem>
-							</SelectContent>
-						</Select>
-						<Select>
-							<SelectTrigger className='w-[180px]'>
-								<SelectValue placeholder='Tất cả giáo trình' />
-							</SelectTrigger>
-							<SelectContent>
-								<SelectItem value='all'>Tất cả giáo trình</SelectItem>
-								<SelectItem value='minna'>Minna no Nihongo</SelectItem>
-								<SelectItem value='soumatome'>Sou Matome</SelectItem>
-								<SelectItem value='try'>TRY!</SelectItem>
-								<SelectItem value='other'>Khác</SelectItem>
+								{Object.values(Level).map((lvl, index) => (
+									<SelectItem key={index} value={lvl}>
+										{lvl}
+									</SelectItem>
+								))}
 							</SelectContent>
 						</Select>
 					</div>
 				</div>
 			</div>
 			<div className='grid grid-cols-3 gap-4'>
-				<Card className={`group h-full`}>
+				<Card className='group h-full'>
 					<CardHeader>
 						<ItemLevelBadge level={Level.N5} />
 						<CardTitle className='text-xl mb-1'>Cấp độ {Level.N5}</CardTitle>

@@ -124,3 +124,17 @@ export async function getBookmarked(userId: string) {
 		throw error;
 	}
 }
+export async function getDashboardStats(userId: string) {
+	try {
+		const res = await fetch(`${API_URL}/statistics/dashboard/${userId}`, {
+			cache: 'no-store', // Ensure we get fresh data
+		});
+		if (!res.ok) {
+			throw new Error(`Failed to fetch dashboard stats: ${res.statusText}`);
+		}
+		return res.json();
+	} catch (error) {
+		console.log(error);
+		throw error;
+	}
+}

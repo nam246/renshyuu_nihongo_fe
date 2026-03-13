@@ -20,7 +20,7 @@ export default function NotFoundPage() {
 		}
 	};
 
-	const handleKeyPress = (e) => {
+	const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === 'Enter') {
 			handleSearch();
 		}
@@ -38,12 +38,12 @@ export default function NotFoundPage() {
 		window.location.href = '/contact';
 	};
 
-	const popularLinks = [
-		{ name: 'Trang chủ', href: '/' },
-		{ name: 'Sản phẩm', href: '/products' },
-		{ name: 'Dịch vụ', href: '/services' },
-		{ name: 'Liên hệ', href: '/contact' },
-	];
+	// const popularLinks = [
+	// 	{ name: 'Trang chủ', href: '/' },
+	// 	{ name: 'Sản phẩm', href: '/products' },
+	// 	{ name: 'Dịch vụ', href: '/services' },
+	// 	{ name: 'Liên hệ', href: '/contact' },
+	// ];
 
 	return (
 		<div className='min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-purple-900/20 dark:to-blue-900/20 p-4'>

@@ -32,7 +32,7 @@ const GrammarListDisplay = ({
 					item.pattern.toLowerCase().includes(query) ||
 					item.structure.toLowerCase().includes(query) ||
 					item.meaning?.toLowerCase().includes(query) ||
-					item.explaination?.toLowerCase().includes(query)
+					item.explanation?.toLowerCase().includes(query)
 				);
 			});
 		}

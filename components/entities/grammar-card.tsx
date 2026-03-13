@@ -40,6 +40,7 @@ import {
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { AddNotesButton } from './add-notes-button';
 
 export function GrammarCard({ grammar }: { grammar: Grammar }) {
 	return (
@@ -64,8 +65,8 @@ export function GrammarCard({ grammar }: { grammar: Grammar }) {
 							{grammar.structure}
 						</div>
 					)}
-					{grammar.explaination && (
-						<p className='text-sm text-slate-500 mt-1'>{grammar.explaination}</p>
+					{grammar.explanation && (
+						<p className='text-sm text-slate-500 mt-1'>{grammar.explanation}</p>
 					)}
 				</div>
 			</CardContent>
@@ -107,7 +108,7 @@ function GrammarDetails({ grammar }: { grammar: Grammar }) {
 						<h3 className='font-bold text-lg'>Giải thích</h3>
 					</div>
 					<Item variant='outline' className='leading-relaxed'>
-						<ItemContent>{grammar.explaination}</ItemContent>
+						<ItemContent>{grammar.explanation}</ItemContent>
 					</Item>
 				</div>
 
@@ -161,10 +162,7 @@ function GrammarDetails({ grammar }: { grammar: Grammar }) {
 					<DialogClose asChild>
 						<Button variant='outline'>Đóng</Button>
 					</DialogClose>
-					<Button>
-						{/* <BookOpen className='w-4 h-4' /> */}
-						Thêm vào bộ học
-					</Button>
+					<AddNotesButton />
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>

@@ -126,9 +126,7 @@ export default function AddGrammarForm() {
 			{/* Basic Info */}
 			<Card>
 				<CardHeader>
-					<CardTitle className='text-lg font-semibold text-gray-900 mb-4'>
-						Thông tin cơ bản
-					</CardTitle>
+					<CardTitle>Thông tin cơ bản</CardTitle>
 				</CardHeader>
 
 				<CardContent className='grid grid-cols-1 gap-4'>

@@ -51,22 +51,22 @@ const UserSettings = ({ onSave }: SettingsProps) => {
 			color: 'text-green-600',
 			bgColor: 'bg-green-100',
 		},
-		{
-			id: 'darkMode',
-			label: 'Chế độ tối',
-			description: 'Bật chế độ tối để bảo vệ mắt',
-			icon: Moon,
-			color: 'text-purple-600',
-			bgColor: 'bg-purple-100',
-		},
-		{
-			id: 'soundEnabled',
-			label: 'Âm thanh',
-			description: 'Bật âm thanh trong các bài tập',
-			icon: Volume2,
-			color: 'text-orange-600',
-			bgColor: 'bg-orange-100',
-		},
+		// {
+		// 	id: 'darkMode',
+		// 	label: 'Chế độ tối',
+		// 	description: 'Bật chế độ tối để bảo vệ mắt',
+		// 	icon: Moon,
+		// 	color: 'text-purple-600',
+		// 	bgColor: 'bg-purple-100',
+		// },
+		// {
+		// 	id: 'soundEnabled',
+		// 	label: 'Âm thanh',
+		// 	description: 'Bật âm thanh trong các bài tập',
+		// 	icon: Volume2,
+		// 	color: 'text-orange-600',
+		// 	bgColor: 'bg-orange-100',
+		// },
 	];
 
 	return (

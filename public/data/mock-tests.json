@@ -1,0 +1,127 @@
+[
+  {
+    "id": "q1_n5_vocab",
+    "question": "えきまで（　　）ですか。",
+    "description": "＿＿の ことばは ひらがなで どう かきますか。１・２・３・４から いちばん いい ものを ひとつ えらんで ください。",
+    "options": {
+      "a": "どう",
+      "b": "どこ",
+      "c": "どうして",
+      "d": "どのくらい"
+    },
+    "correctAnswer": "d",
+    "explanation": "どのくらい dùng để hỏi khoảng thời gian, khoảng cách.",
+    "difficulty": "easy",
+    "questionType": "VOCABULARY_CONTEXT_USAGE",
+    "level": "N5",
+    "section": "文字・語彙",
+    "year": 2023,
+    "tags": ["vocabulary", "question-word"]
+  },
+  {
+    "id": "q2_n5_vocab",
+    "question": "あの（　　）はだれですか。",
+    "description": "＿＿の ことばは ひらがなで どう かきますか。１・２・３・４から いちばん いい ものを ひとつ えらんで ください。",
+    "options": {
+      "a": "ひと",
+      "b": "こと",
+      "c": "もの",
+      "d": "ところ"
+    },
+    "correctAnswer": "a",
+    "explanation": "ひと (người) phù hợp nhất với câu hỏi \"là ai\".",
+    "difficulty": "easy",
+    "questionType": "VOCABULARY_CONTEXT_USAGE",
+    "level": "N5",
+    "section": "文字・語彙",
+    "year": 2023,
+    "tags": ["vocabulary", "noun"]
+  },
+  {
+    "id": "q3_n5_grammar",
+    "question": "つくえの　うえに　本（　　）ノートが　あります。",
+    "description": "（　　）に　何を　入れますか。１・２・３・４から　いちばん　いい　ものを　ひとつ　えらんで　ください。",
+    "options": {
+      "a": "や",
+      "b": "と",
+      "c": "も",
+      "d": "は"
+    },
+    "correctAnswer": "b",
+    "explanation": "Liệt kê hai danh từ dùng trợ từ と (và).",
+    "difficulty": "easy",
+    "questionType": "GRAMMAR_SELECT",
+    "level": "N5",
+    "section": "文法"
+  },
+  {
+    "id": "q4_n5_reading",
+    "question": "わたしは　まいあさ　７じに　おきます。それから、あさごはんを　たべます。８じに　うちを　でます。８じ半に　がっこうに　つきます。\n\nこの人は　何時に　うちを　でますか。",
+    "description": "つぎの　ぶんしょうを　よんで、しつもんに　こたえて　ください。こたえは　１・２・３・４から　いちばん　いい　ものを　ひとつ　えらんで　ください。",
+    "options": {
+      "a": "７じ",
+      "b": "７じ半",
+      "c": "８じ",
+      "d": "８じ半"
+    },
+    "correctAnswer": "c",
+    "explanation": "Đoạn văn viết: ８じに　うちを　でます。",
+    "difficulty": "medium",
+    "questionType": "READING_SHORT_PASSAGE",
+    "level": "N5",
+    "section": "読解"
+  },
+  {
+    "id": "q5_n5_listening",
+    "question": "男の人と女の人が話しています。（　　）どうしますか。",
+    "description": "問題１では、まず質問を聞いてください。それから話を聞いて、問題用紙の１から４の中から、最もよいものを一つ選んでください。",
+    "options": {
+      "a": "学校へ行く",
+      "b": "家に帰る",
+      "c": "友達に会う",
+      "d": "勉強する"
+    },
+    "correctAnswer": "a",
+    "difficulty": "medium",
+    "questionType": "LISTENING_TASK_BASED",
+    "level": "N5",
+    "section": "聴解",
+    "mediaUrl": "/audio/listening_sample_n5.mp3"
+  },
+  {
+    "id": "q1_n4_vocab",
+    "question": "明日は雨が（　　）。",
+    "description": "（　　）に何を入れますか。１・２・３・４から一番いいものを一つえらんでください。",
+    "options": {
+      "a": "降る",
+      "b": "降ります",
+      "c": "降るでしょう",
+      "d": "降りました"
+    },
+    "correctAnswer": "c",
+    "explanation": "降るでしょう dùng để diễn tả dự đoán về thời tiết trong tương lai.",
+    "difficulty": "medium",
+    "questionType": "GRAMMAR_SELECT",
+    "level": "N4",
+    "section": "文法",
+    "year": 2022,
+    "tags": ["grammar", "verb", "conjecture"]
+  },
+  {
+    "id": "q2_n4_vocab",
+    "question": "このケーキは甘くて（　　）。",
+    "description": "（　　）に何を入れますか。１・２・３・４から一番いいものを一つえらんでください。",
+    "options": {
+      "a": "おいしい",
+      "b": "おいしくない",
+      "c": "おいしかった",
+      "d": "おいしくなかった"
+    },
+    "correctAnswer": "a",
+    "explanation": "甘くて (ngọt và) nên vế sau sẽ nói về mặt tích cực.",
+    "difficulty": "easy",
+    "questionType": "VOCABULARY_CONTEXT_USAGE",
+    "level": "N4",
+    "section": "文字・語彙"
+  }
+]

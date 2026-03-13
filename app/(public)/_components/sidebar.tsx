@@ -164,7 +164,7 @@ export default function Sidebar() {
             key={item.href}
             item={item}
             isActive={activeTab === item.href}
-            level={level}
+            level={level as Level}
           />
         ))}
 

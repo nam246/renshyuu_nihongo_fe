@@ -2,7 +2,7 @@
 
 import { AudioButton } from '@/components/entities/audio-button';
 import { CopyButton } from '@/components/entities/copy-button';
-import { BookmarkedButton } from '@/components/layout/bookmarked-button';
+import { BookmarkedButton } from '@/components/entities/bookmarked-button';
 import {
 	Card,
 	CardContent,

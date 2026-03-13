@@ -381,7 +381,15 @@ export default function InfoPage() {
 	);
 }
 
-function QuickStartCard({ number, title, description }) {
+function QuickStartCard({
+	number,
+	title,
+	description,
+}: {
+	number: string;
+	title: string;
+	description: string;
+}) {
 	return (
 		<Card>
 			<CardHeader className='text-center'>
@@ -395,7 +403,15 @@ function QuickStartCard({ number, title, description }) {
 	);
 }
 
-function TipCard({ title, description, color }) {
+function TipCard({
+	title,
+	description,
+	color,
+}: {
+	title: string;
+	description: string;
+	color: string;
+}) {
 	return (
 		<Item className={`${color}`}>
 			<ItemContent>
