@@ -1,7 +1,6 @@
 'use client';
 
-import { BookOpen, Trophy, Target, Zap, Users, Award } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { Award } from 'lucide-react';
 
 import {
 	Card,
@@ -88,10 +87,10 @@ function LevelSection({
 	return (
 		<section className='py-20 bg-linear-to-b from-primary to-slate-50'>
 			<div className='text-center mb-16'>
-				<h2 className="md:text-center text-3xl xs:text-4xl md:text-5xl leading-[1.15]! font-semibold tracking-tighter">
+				<h2 className='md:text-center text-3xl xs:text-4xl md:text-5xl leading-[1.15]! font-semibold tracking-tighter'>
 					Các cấp độ theo JLPT
 				</h2>
-				<p className="mt-1.5 md:text-center xs:text-lg text-muted-foreground">
+				<p className='mt-1.5 md:text-center xs:text-lg text-muted-foreground'>
 					Chọn cấp độ phù hợp và bắt đầu hành trình của bạn
 				</p>
 			</div>
