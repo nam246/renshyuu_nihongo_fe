@@ -1,0 +1,362 @@
+
+> renshyuu-nihongo-project-frontend@0.1.0 lint
+> eslint
+
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(auth)\_components\quick-login-button.tsx
+  28:12  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\_components\datatable-transaction.tsx
+   85:7   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                     @next/next/no-img-element
+  113:17  warning  Compilation Skipped: Use of incompatible library
+
+This API returns functions which cannot be memoized without leading to stale UI. To prevent this, by default React Compiler will skip memoizing this component/hook. However, you may see issues if values from this API are passed to other components/hooks that are memoized.
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\_components\datatable-transaction.tsx:113:17
+  111 |   })
+  112 |
+> 113 |   const table = useReactTable({
+      |                 ^^^^^^^^^^^^^ TanStack Table's `useReactTable()` API returns functions that cannot be memoized safely
+  114 |     data,
+  115 |     columns,
+  116 |     getCoreRowModel: getCoreRowModel(),  react-hooks/incompatible-library
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\_components\form\add-mock-test-form.tsx
+  354:8  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\_components\grammar-card.tsx
+   8:2   warning  'ItemTitle' is defined but never used        @typescript-eslint/no-unused-vars
+   9:2   warning  'ItemDescription' is defined but never used  @typescript-eslint/no-unused-vars
+  12:19  warning  'Level' is defined but never used            @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\_components\grammar-list-display.tsx
+  3:10  warning  'useCallback' is defined but never used  @typescript-eslint/no-unused-vars
+  7:21  warning  'Loader2' is defined but never used      @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\_components\kanji-card.tsx
+  12:10  warning  'Copy' is defined but never used                  @typescript-eslint/no-unused-vars
+  12:16  warning  'Check' is defined but never used                 @typescript-eslint/no-unused-vars
+  12:23  warning  'Volume2' is defined but never used               @typescript-eslint/no-unused-vars
+  36:9   warning  'copied' is assigned a value but never used       @typescript-eslint/no-unused-vars
+  38:8   warning  'handleCopy' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  44:8   warning  'handleSpeak' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\_components\learning-stats-card.tsx
+  2:15  warning  'ReactNode' is defined but never used     @typescript-eslint/no-unused-vars
+  7:10  warning  'BookOpenIcon' is defined but never used  @typescript-eslint/no-unused-vars
+  7:24  warning  'CheckCircle2' is defined but never used  @typescript-eslint/no-unused-vars
+  7:38  warning  'Clock' is defined but never used         @typescript-eslint/no-unused-vars
+  7:45  warning  'Target' is defined but never used        @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\_components\recent-lessons-card.tsx
+  15:2  warning  'ItemDescription' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\_components\user-profile-card.tsx
+   8:2   warning  'CardDescription' is defined but never used                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+  13:34  warning  'Edit2' is defined but never used                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+  26:8   warning  'joinDate' is assigned a value but never used                                                                                                                                                                                                                                            @typescript-eslint/no-unused-vars
+  41:7   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  41:7   warning  img elements must have an alt prop, either with meaningful text, or an empty string for decorative images                                                                                                                                                                                jsx-a11y/alt-text
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\_components\user-settings.tsx
+   5:22  warning  'Moon' is defined but never used                  @typescript-eslint/no-unused-vars
+   5:28  warning  'Volume2' is defined but never used               @typescript-eslint/no-unused-vars
+  28:25  warning  'onSave' is defined but never used                @typescript-eslint/no-unused-vars
+  29:19  warning  'setSettings' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  35:9   warning  'saving' is assigned a value but never used       @typescript-eslint/no-unused-vars
+  35:17  warning  'setSaving' is assigned a value but never used    @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\_components\vocabulary-card.tsx
+   8:2  warning  'Volume2' is defined but never used              @typescript-eslint/no-unused-vars
+   9:2  warning  'Copy' is defined but never used                 @typescript-eslint/no-unused-vars
+  10:2  warning  'Check' is defined but never used                @typescript-eslint/no-unused-vars
+  21:2  warning  'ItemGroup' is defined but never used            @typescript-eslint/no-unused-vars
+  50:9  warning  'copied' is assigned a value but never used      @typescript-eslint/no-unused-vars
+  52:8  warning  'handleCopy' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\_components\vocabulary-filter.tsx
+  7:20  warning  'useMemo' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\_components\weekly-activity-chart.tsx
+  9:2  warning  'CardAction' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\_components\widget-product-insights.tsx
+  51:9  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\_components\widget-total-earning.tsx
+  71:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\add-question\page.tsx
+    5:2   warning  'Card' is defined but never used                         @typescript-eslint/no-unused-vars
+    6:2   warning  'CardHeader' is defined but never used                   @typescript-eslint/no-unused-vars
+    7:2   warning  'CardTitle' is defined but never used                    @typescript-eslint/no-unused-vars
+    8:2   warning  'CardDescription' is defined but never used              @typescript-eslint/no-unused-vars
+    9:2   warning  'CardContent' is defined but never used                  @typescript-eslint/no-unused-vars
+   11:10  warning  'Plus' is defined but never used                         @typescript-eslint/no-unused-vars
+   11:16  warning  'Save' is defined but never used                         @typescript-eslint/no-unused-vars
+   11:22  warning  'X' is defined but never used                            @typescript-eslint/no-unused-vars
+   42:9   warning  'loading' is assigned a value but never used             @typescript-eslint/no-unused-vars
+   43:9   warning  'error' is assigned a value but never used               @typescript-eslint/no-unused-vars
+   44:9   warning  'success' is assigned a value but never used             @typescript-eslint/no-unused-vars
+   46:8   warning  'handleInputChange' is assigned a value but never used   @typescript-eslint/no-unused-vars
+   59:8   warning  'handleOptionChange' is assigned a value but never used  @typescript-eslint/no-unused-vars
+   68:8   warning  'addOption' is assigned a value but never used           @typescript-eslint/no-unused-vars
+   77:8   warning  'removeOption' is assigned a value but never used        @typescript-eslint/no-unused-vars
+   91:8   warning  'handleMediaChange' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  106:8   warning  'removeMedia' is assigned a value but never used         @typescript-eslint/no-unused-vars
+  114:8   warning  'handleSubmit' is assigned a value but never used        @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\dashboard\page.tsx
+  10:8  warning  'WeeklyActivityChart' is defined but never used   @typescript-eslint/no-unused-vars
+  13:8  warning  'TransactionDatatable' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\layout.tsx
+   7:2  warning  'LanguagesIcon' is defined but never used     @typescript-eslint/no-unused-vars
+  17:8  warning  'LanguageDropdown' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\profile\page.tsx
+   6:8   warning  'UserProfileCard' is defined but never used           @typescript-eslint/no-unused-vars
+   7:8   warning  'EditProfileForm' is defined but never used           @typescript-eslint/no-unused-vars
+   9:10  warning  'Button' is defined but never used                    @typescript-eslint/no-unused-vars
+  11:2   warning  'Sheet' is defined but never used                     @typescript-eslint/no-unused-vars
+  12:2   warning  'SheetClose' is defined but never used                @typescript-eslint/no-unused-vars
+  13:2   warning  'SheetContent' is defined but never used              @typescript-eslint/no-unused-vars
+  14:2   warning  'SheetDescription' is defined but never used          @typescript-eslint/no-unused-vars
+  15:2   warning  'SheetFooter' is defined but never used               @typescript-eslint/no-unused-vars
+  16:2   warning  'SheetHeader' is defined but never used               @typescript-eslint/no-unused-vars
+  17:2   warning  'SheetTitle' is defined but never used                @typescript-eslint/no-unused-vars
+  18:2   warning  'SheetTrigger' is defined but never used              @typescript-eslint/no-unused-vars
+  22:8   warning  'router' is assigned a value but never used           @typescript-eslint/no-unused-vars
+  23:10  warning  'user' is assigned a value but never used             @typescript-eslint/no-unused-vars
+  23:16  warning  'isLoading' is assigned a value but never used        @typescript-eslint/no-unused-vars
+  24:9   warning  'showEditForm' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  24:23  warning  'setShowEditForm' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(private)\user-management\page.tsx
+   9:2  warning  'TableCaption' is defined but never used  @typescript-eslint/no-unused-vars
+  11:2  warning  'TableFooter' is defined but never used   @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(public)\(learning)\grammar\page.tsx
+  26:4  warning  'isNotFound' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  28:4  warning  'error' is assigned a value but never used       @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(public)\(learning)\kanji\page.tsx
+   2:10  warning  'Filter' is defined but never used         @typescript-eslint/no-unused-vars
+   2:18  warning  'Search' is defined but never used         @typescript-eslint/no-unused-vars
+   5:2   warning  'Select' is defined but never used         @typescript-eslint/no-unused-vars
+   6:2   warning  'SelectContent' is defined but never used  @typescript-eslint/no-unused-vars
+   7:2   warning  'SelectItem' is defined but never used     @typescript-eslint/no-unused-vars
+   8:2   warning  'SelectTrigger' is defined but never used  @typescript-eslint/no-unused-vars
+   9:2   warning  'SelectValue' is defined but never used    @typescript-eslint/no-unused-vars
+  11:10  warning  'Button' is defined but never used         @typescript-eslint/no-unused-vars
+  12:10  warning  'Input' is defined but never used          @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(public)\(learning)\vocabulary\page.tsx
+   4:10  warning  'BookOpen' is defined but never used       @typescript-eslint/no-unused-vars
+   4:20  warning  'Filter' is defined but never used         @typescript-eslint/no-unused-vars
+   4:28  warning  'Search' is defined but never used         @typescript-eslint/no-unused-vars
+   7:2   warning  'Select' is defined but never used         @typescript-eslint/no-unused-vars
+   8:2   warning  'SelectContent' is defined but never used  @typescript-eslint/no-unused-vars
+   9:2   warning  'SelectItem' is defined but never used     @typescript-eslint/no-unused-vars
+  10:2   warning  'SelectTrigger' is defined but never used  @typescript-eslint/no-unused-vars
+  11:2   warning  'SelectValue' is defined but never used    @typescript-eslint/no-unused-vars
+  13:10  warning  'Button' is defined but never used         @typescript-eslint/no-unused-vars
+  14:10  warning  'Input' is defined but never used          @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(public)\(practice)\flashcards\_components\flashcard-app.tsx
+    4:73  warning  'Check' is defined but never used                                                                                                 @typescript-eslint/no-unused-vars
+    4:80  warning  'X' is defined but never used                                                                                                     @typescript-eslint/no-unused-vars
+   10:10  warning  'Level' is defined but never used                                                                                                 @typescript-eslint/no-unused-vars
+   10:17  warning  'Flashcard' is defined but never used                                                                                             @typescript-eslint/no-unused-vars
+   72:12  warning  'direction' is assigned a value but never used                                                                                    @typescript-eslint/no-unused-vars
+  125:8   warning  React Hook useEffect has missing dependencies: 'handleNext' and 'handlePrev'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(public)\(practice)\flashcards\page.tsx
+    4:8   warning  'Link' is defined but never used             @typescript-eslint/no-unused-vars
+    6:2   warning  'Card' is defined but never used             @typescript-eslint/no-unused-vars
+    7:2   warning  'CardAction' is defined but never used       @typescript-eslint/no-unused-vars
+    8:2   warning  'CardContent' is defined but never used      @typescript-eslint/no-unused-vars
+    9:2   warning  'CardDescription' is defined but never used  @typescript-eslint/no-unused-vars
+   10:2   warning  'CardHeader' is defined but never used       @typescript-eslint/no-unused-vars
+   11:2   warning  'CardTitle' is defined but never used        @typescript-eslint/no-unused-vars
+   13:10  warning  'Badge' is defined but never used            @typescript-eslint/no-unused-vars
+   14:10  warning  'Progress' is defined but never used         @typescript-eslint/no-unused-vars
+   17:2   warning  'Flame' is defined but never used            @typescript-eslint/no-unused-vars
+   18:2   warning  'BookOpen' is defined but never used         @typescript-eslint/no-unused-vars
+   19:2   warning  'TrendingUp' is defined but never used       @typescript-eslint/no-unused-vars
+   20:2   warning  'Target' is defined but never used           @typescript-eslint/no-unused-vars
+   21:2   warning  'ChevronRight' is defined but never used     @typescript-eslint/no-unused-vars
+   37:7   warning  'levels' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  328:7   warning  'stats' is assigned a value but never used   @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(public)\(practice)\mock-test\[id]\page.tsx
+  108:7  warning  'Question' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(public)\(practice)\mock-test\page.tsx
+  1:17  warning  'QuestionType' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(public)\(practice)\quick-test\page.tsx
+  24:22  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(public)\(static-page)\contact\page.tsx
+  10:8  warning  'PageHeader' is defined but never used                                                                                                                                                                                                                                                   @typescript-eslint/no-unused-vars
+  12:6  warning  'ContactInfo' is defined but never used                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+  44:4  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(public)\(static-page)\info\page.tsx
+   3:17  warning  'useState' is defined but never used     @typescript-eslint/no-unused-vars
+  13:2   warning  'ChevronDown' is defined but never used  @typescript-eslint/no-unused-vars
+  14:2   warning  'ChevronUp' is defined but never used    @typescript-eslint/no-unused-vars
+  28:2   warning  'ItemMedia' is defined but never used    @typescript-eslint/no-unused-vars
+  34:2   warning  'CardAction' is defined but never used   @typescript-eslint/no-unused-vars
+  35:2   warning  'CardContent' is defined but never used  @typescript-eslint/no-unused-vars
+  37:2   warning  'CardFooter' is defined but never used   @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(public)\_components\filter-bar.tsx
+   9:2  warning  'SelectGroup' is defined but never used  @typescript-eslint/no-unused-vars
+  11:2  warning  'SelectLabel' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(public)\_components\sidebar.tsx
+   9:10  warning  'SidebarProvider' is defined but never used  @typescript-eslint/no-unused-vars
+   9:27  warning  'SidebarTrigger' is defined but never used   @typescript-eslint/no-unused-vars
+  13:3   warning  'CardAction' is defined but never used       @typescript-eslint/no-unused-vars
+  15:3   warning  'CardDescription' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\(public)\_components\stats-grid.tsx
+   3:2   warning  'CardAction' is defined but never used   @typescript-eslint/no-unused-vars
+   4:2   warning  'CardContent' is defined but never used  @typescript-eslint/no-unused-vars
+   6:2   warning  'CardFooter' is defined but never used   @typescript-eslint/no-unused-vars
+  31:27  warning  'l' is defined but never used            @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\global-error.tsx
+  4:3  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\app\layout.tsx
+  3:1  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\components\Logo.tsx
+  3:8   warning  'Link' is defined but never used   @typescript-eslint/no-unused-vars
+  5:15  warning  'props' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\components\entities\example-item.tsx
+  1:10  warning  'Button' is defined but never used    @typescript-eslint/no-unused-vars
+  8:10  warning  'BookOpen' is defined but never used  @typescript-eslint/no-unused-vars
+  8:20  warning  'Volume2' is defined but never used   @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\components\entities\grammar-card.tsx
+   3:8   warning  'Link' is defined but never used             @typescript-eslint/no-unused-vars
+   9:2   warning  'ItemDescription' is defined but never used  @typescript-eslint/no-unused-vars
+  10:2   warning  'ItemFooter' is defined but never used       @typescript-eslint/no-unused-vars
+  11:2   warning  'ItemHeader' is defined but never used       @typescript-eslint/no-unused-vars
+  12:2   warning  'ItemTitle' is defined but never used        @typescript-eslint/no-unused-vars
+  14:10  warning  'ChevronRight' is defined but never used     @typescript-eslint/no-unused-vars
+  18:10  warning  'AudioButton' is defined but never used      @typescript-eslint/no-unused-vars
+  21:2   warning  'CardAction' is defined but never used       @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\components\entities\kanji-card.tsx
+   7:2   warning  'CardTitle' is defined but never used        @typescript-eslint/no-unused-vars
+   8:2   warning  'CardDescription' is defined but never used  @typescript-eslint/no-unused-vars
+  11:2   warning  'CardAction' is defined but never used       @typescript-eslint/no-unused-vars
+  14:10  warning  'Badge' is defined but never used            @typescript-eslint/no-unused-vars
+  30:2   warning  'ItemFooter' is defined but never used       @typescript-eslint/no-unused-vars
+  31:2   warning  'ItemHeader' is defined but never used       @typescript-eslint/no-unused-vars
+  39:20  warning  'Volume2' is defined but never used          @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\components\entities\lesson-items.tsx
+   2:8   warning  'Link' is defined but never used            @typescript-eslint/no-unused-vars
+   7:2   warning  'ChevronRight' is defined but never used    @typescript-eslint/no-unused-vars
+   9:2   warning  'Bookmark' is defined but never used        @typescript-eslint/no-unused-vars
+  21:10  warning  'toast' is defined but never used           @typescript-eslint/no-unused-vars
+  22:10  warning  'Button' is defined but never used          @typescript-eslint/no-unused-vars
+  23:10  warning  'Badge' is defined but never used           @typescript-eslint/no-unused-vars
+  24:10  warning  'ItemLevelBadge' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\components\entities\vocabulary-card.tsx
+   3:8   warning  'Link' is defined but never used          @typescript-eslint/no-unused-vars
+   6:10  warning  'ChevronRight' is defined but never used  @typescript-eslint/no-unused-vars
+  12:2   warning  'ItemFooter' is defined but never used    @typescript-eslint/no-unused-vars
+  13:2   warning  'ItemHeader' is defined but never used    @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\components\layout\hero-section.tsx
+  66:4  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\components\layout\login-button.tsx
+  11:16  warning  'isLoading' is assigned a value but never used        @typescript-eslint/no-unused-vars
+  11:27  warning  'isAuthenticated' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\components\layout\navbar.tsx
+  15:10  warning  'Avatar' is defined but never used          @typescript-eslint/no-unused-vars
+  15:18  warning  'AvatarFallback' is defined but never used  @typescript-eslint/no-unused-vars
+  15:34  warning  'AvatarImage' is defined but never used     @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\components\layout\navbar\nav-menu.tsx
+   9:10  warning  'Avatar' is defined but never used               @typescript-eslint/no-unused-vars
+   9:18  warning  'AvatarFallback' is defined but never used       @typescript-eslint/no-unused-vars
+   9:34  warning  'AvatarImage' is defined but never used          @typescript-eslint/no-unused-vars
+  11:10  warning  'useIsMobile' is defined but never used          @typescript-eslint/no-unused-vars
+  12:10  warning  'MenuIcon' is defined but never used             @typescript-eslint/no-unused-vars
+  14:10  warning  'Button' is defined but never used               @typescript-eslint/no-unused-vars
+  16:5   warning  'DropdownMenu' is defined but never used         @typescript-eslint/no-unused-vars
+  17:5   warning  'DropdownMenuContent' is defined but never used  @typescript-eslint/no-unused-vars
+  18:5   warning  'DropdownMenuItem' is defined but never used     @typescript-eslint/no-unused-vars
+  19:5   warning  'DropdownMenuTrigger' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\components\layout\navbar\navbar.tsx
+   6:10  warning  'Button' is defined but never used             @typescript-eslint/no-unused-vars
+  10:11  warning  'isMobile' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\components\layout\theme-toggle.tsx
+  13:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\components\layout\theme-toggle.tsx:13:9
+  11 |
+  12 |     useEffect(() => {
+> 13 |         setMounted(true);
+     |         ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  14 |     }, []);
+  15 |
+  16 |     if (!mounted) {  react-hooks/set-state-in-effect
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\components\test-detail\mock-test\mock-sidebar-tracking.tsx
+   9:2  warning  'Accordion' is defined but never used         @typescript-eslint/no-unused-vars
+  10:2  warning  'AccordionContent' is defined but never used  @typescript-eslint/no-unused-vars
+  11:2  warning  'AccordionItem' is defined but never used     @typescript-eslint/no-unused-vars
+  12:2  warning  'AccordionTrigger' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\components\ui\sidebar.tsx
+  611:26  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\components\ui\sidebar.tsx:611:26
+  609 |   // Random width between 50 to 90%.
+  610 |   const width = React.useMemo(() => {
+> 611 |     return `${Math.floor(Math.random() * 40) + 50}%`
+      |                          ^^^^^^^^^^^^^ Cannot call impure function
+  612 |   }, [])
+  613 |
+  614 |   return (  react-hooks/purity
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\lib\api-client.ts
+  44:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  62:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\lib\auth.ts
+  90:8  warning  'user' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\lib\data.ts
+  1:10  warning  'Lesson' is defined but never used  @typescript-eslint/no-unused-vars
+  1:18  warning  'Level' is defined but never used   @typescript-eslint/no-unused-vars
+
+D:\Projects\javascript\reactjs-nextjs\renshyuu_nihongo_fe\proxy.ts
+  1:10  warning  'NextResponse' is defined but never used  @typescript-eslint/no-unused-vars
+  2:15  warning  'NextRequest' is defined but never used   @typescript-eslint/no-unused-vars
+
+✖ 212 problems (6 errors, 206 warnings)
+

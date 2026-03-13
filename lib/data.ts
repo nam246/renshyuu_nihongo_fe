@@ -1,4 +1,4 @@
-import { Lesson, Level, Vocabulary } from '../types/types';
+import { Vocabulary } from '../types/types';
 
 // Nên đổi tên thành data-server. maybe?
 // Để data-client cho client components only

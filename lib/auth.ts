@@ -87,7 +87,7 @@ export const authOptions: NextAuthOptions = {
 async function getUserByUsername(username: string) {
 	// Ví dụ với Prisma:
 	// return await prisma.user.findUnique({ where: { username } });
-	const user = await fetch(`${process.env.API_URL}/auth/get-user`)
+	// const user = await fetch(`${process.env.API_URL}/auth/get-user`)
 
 	// Ví dụ mock:
 	const users = [

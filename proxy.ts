@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+// import { NextResponse } from 'next/server';
+// import type { NextRequest } from 'next/server';
 import { default as nextAuthMiddleware } from 'next-auth/middleware';
 
 export default nextAuthMiddleware;
