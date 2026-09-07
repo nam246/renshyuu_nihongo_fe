@@ -1,13 +1,13 @@
 import { metadata } from '../layout';
 import Link from 'next/link';
 
-import {
-	FacebookIcon,
-	InstagramIcon,
-	LanguagesIcon,
-	LinkedinIcon,
-	TwitterIcon,
-} from 'lucide-react';
+// import {
+// 	FacebookIcon,
+// 	InstagramIcon,
+// 	LanguagesIcon,
+// 	LinkedinIcon,
+// 	TwitterIcon,
+// } from 'lucide-react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -60,7 +60,7 @@ const PrivateLayout = ({ children }: { children: React.ReactNode }) => {
 								, {metadata.description}
 							</p>
 							<div className='flex items-center gap-5'>
-								<a href='#'>
+								{/* <a href='#'>
 									<FacebookIcon className='size-4' />
 								</a>
 								<a href='#'>
@@ -71,7 +71,7 @@ const PrivateLayout = ({ children }: { children: React.ReactNode }) => {
 								</a>
 								<a href='#'>
 									<TwitterIcon className='size-4' />
-								</a>
+								</a> */}
 							</div>
 						</div>
 					</footer>
