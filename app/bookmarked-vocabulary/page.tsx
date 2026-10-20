@@ -14,6 +14,8 @@ export default async function BookmarkedVocabularyPage() {
 
 	if (session?.user.id) {
 		bookmarkedData = await getBookmarked(session.user.id);
+		console.log('bookmark dataaaaaaaaaaaa',bookmarkedData);
+		
 		bookmarkedVocab = await bookmarkedData
 			.map((item: Bookmarked) => item.vocabulary)
 			.filter(Boolean);

@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
 // import { AuthProvider } from '@/lib/auth-context';
 import AuthProviders from '@/components/session-provider';
+import MainLayoutShell from '@/app/_components/main-layout-shell';
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -23,7 +24,6 @@ export const metadata: Metadata = {
 		'A Web-Based Application for Japanese Language Learning and JLPT Examination Practice',
 };
 
-// chắc nên mang header và footer vào page
 export default function RootLayout({
 	children,
 }: Readonly<{
@@ -40,9 +40,7 @@ export default function RootLayout({
 						disableTransitionOnChange
 					>
 						<Toaster />
-						{/* <Navbar /> */}
-
-						<main>{children}</main>
+						<MainLayoutShell>{children}</MainLayoutShell>
 					</ThemeProvider>
 				</AuthProviders>
 			</body>

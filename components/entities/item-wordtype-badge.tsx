@@ -24,7 +24,7 @@ export function ItemWordTypeBadge({ wordType }: { wordType: WordType }) {
 				wordType,
 			)}`}
 		>
-			{wordType.toLowerCase()}
+			{wordType}
 		</Badge>
 	);
 }

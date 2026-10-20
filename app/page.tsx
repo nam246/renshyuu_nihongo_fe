@@ -13,8 +13,6 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
-import Header from '@/components/layout/header';
-import Footer from '@/components/layout/footer';
 import Hero from '@/components/layout/hero';
 import Features from '@/components/layout/features';
 import FAQ from '@/components/layout/faq';
@@ -32,44 +30,39 @@ const levels: {
 		description: 'Nền tảng Hiragana, Katakana và từ vựng cơ bản',
 		lessons: 120,
 		students: 15000,
-		link: '/n5/grammar',
+		link: '/grammar?level=N5',
 	},
 	{
 		title: 'N4 - Trung cấp',
 		description: 'Ngữ pháp tiếng Nhật cơ bản và hội thoại hàng ngày',
 		lessons: 180,
 		students: 10000,
-		link: '/n4/grammar',
+		link: '/grammar?level=N4',
 	},
 	{
 		title: 'N3 - Trung cao cấp',
 		description: 'Giao tiếp thành thạo trong các tình huống thực tế',
 		lessons: 240,
 		students: 6000,
-		link: '/n3/grammar',
+		link: '/grammar?level=N3',
 	},
 ];
 
 // Homepage Component
 export default function Homepage() {
 	return (
-		<>
-			<Header />
-			<div className='min-h-screen'>
-				{/* Hero Section */}
-				{/* <HeroSection /> */}
-				<Hero />
+		<div className='min-h-screen space-y-12'>
+			{/* Hero Section */}
+			<Hero />
 
-				{/* Features Section */}
-				<Features />
+			{/* Features Section */}
+			<Features />
 
-				{/* Levels Section */}
-				<LevelSection levels={levels} />
+			{/* Levels Section */}
+			<LevelSection levels={levels} />
 
-				<FAQ />
-			</div>
-			<Footer />
-		</>
+			<FAQ />
+		</div>
 	);
 }
 

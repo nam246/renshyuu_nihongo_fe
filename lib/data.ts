@@ -1,4 +1,4 @@
-import { Vocabulary } from '../types/types';
+import { ResponseData ,Vocabulary } from '../types/types';
 
 // Nên đổi tên thành data-server. maybe?
 // Để data-client cho client components only
@@ -23,9 +23,9 @@ export async function getLessons(params?: string) {
 	}
 }
 
-export async function getVocabularies(): Promise<Vocabulary[]> {
+export async function getVocabularies({pageNumber = 1, pageSize = 20}: {pageNumber?: number; pageSize?: number}): Promise<ResponseData<Vocabulary>> {
 	try {
-		const res = await fetch(`${API_URL}/vocabulary`);
+		const res = await fetch(`${API_URL}/vocabulary?pageNumber=${pageNumber}&pageSize=${pageSize}`);
 		if (!res.ok) {
 			if (res.status === 404) {
 				throw new Error('No vocabularies found');
@@ -33,7 +33,15 @@ export async function getVocabularies(): Promise<Vocabulary[]> {
 			throw new Error(`Failed to fetch vocabularies: ${res.statusText}`);
 		}
 		const data = await res.json();
-		return data;
+
+		return {
+			items: data.items,
+			totalCount: data.totalCount,
+			pageNumber: data.pageNumber,
+			pageSize: data.pageSize,
+			totalPages: data.totalPages,
+		};
+
 	} catch (error) {
 		console.log(error);
 		throw error;
