@@ -14,7 +14,7 @@ import { Lesson, Kanji, Level } from '@/types/types';
 import LessonItem from '@/components/entities/lesson-items';
 import { getLessons, getKanjis } from '@/lib/data';
 import { KanjiList } from '@/components/entities';
-import FilterBar from '@/app/_components/filter-bar';
+import FilterBar from '@/components/layout/filter-bar';
 
 export default async function LearningKanjiPage({
 	searchParams,
@@ -30,6 +30,10 @@ export default async function LearningKanjiPage({
 	const kanjiByLessonId = (lessonId: string): Kanji[] => {
 		return kanjis.filter((kanji) => kanji.lessonId === lessonId);
 	};
+	console.log(lessons);
+	console.log(kanjis);
+	
+	
 	return (
 		<>
 			{/* Header */}

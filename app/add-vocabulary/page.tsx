@@ -1,5 +1,5 @@
 import PageHeader from '@/components/layout/page-header';
-import { AddVocabularyForm } from '../_components/form/add-vocabulary-form';
+import { AddVocabularyForm } from '../../components/form/add-vocabulary-form';
 
 const AddVocabularyPage = () => {
 	return (

@@ -1,7 +1,7 @@
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 
-import KanjiListDisplay from '../_components/kanji-list-display';
+import KanjiListDisplay from '../../components/layout/kanji-list-display';
 import PageHeader from '@/components/layout/page-header';
 import { getBookmarked } from '@/lib/data';
 import { Bookmarked } from '@/types/types';

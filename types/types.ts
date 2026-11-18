@@ -8,7 +8,7 @@ export type ResponseData<T> = {
 
 export type Lesson = {
 	id: string;
-	lessonTitle: string;
+	lessonNumber: number;
 	level: Level;
 	source: Source;
 	grammars: Grammar[];

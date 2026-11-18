@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 
-import VocabularyListDisplay from '../_components/vocabulary-list-display';
+import VocabularyListDisplay from '../../components/layout/vocabulary-list-display';
 import PageHeader from '@/components/layout/page-header';
 import { getBookmarked } from '@/lib/data';
 import { Bookmarked } from '@/types/types';

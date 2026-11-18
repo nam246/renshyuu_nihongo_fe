@@ -116,7 +116,7 @@ function GrammarDetails({ grammar }: { grammar: Grammar }) {
 				<Tabs defaultValue='examples' className='w-full'>
 					<TabsList className='w-full'>
 						<TabsTrigger value='examples'>
-							Ví dụ ({grammar.examples.length || 0})
+							Ví dụ ({grammar.examples?.length || 0})
 						</TabsTrigger>
 						<TabsTrigger value='notes'>Ghi chú</TabsTrigger>
 					</TabsList>

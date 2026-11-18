@@ -1,5 +1,5 @@
 import PageHeader from '@/components/layout/page-header';
-import { AddMockTestForm } from '../_components/form/add-mock-test-form';
+import { AddMockTestForm } from '../../components/form/add-mock-test-form';
 
 const MockTestBuilderPage = () => {
 	return (

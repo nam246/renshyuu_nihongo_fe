@@ -4,7 +4,7 @@ import { getLessons, getGrammars } from '@/lib/data';
 import PageHeader from '@/components/layout/page-header';
 import LessonItem from '@/components/entities/lesson-items';
 import { GrammarList } from '@/components/entities';
-import FilterBar from '@/app/_components/filter-bar';
+import FilterBar from '@/components/layout/filter-bar';
 
 export default async function LearningGrammarPage({
 	searchParams,
@@ -32,7 +32,7 @@ export default async function LearningGrammarPage({
 	const grammarsByLessonId = (lessonId: string) => {
 		return grammars.filter((grammar) => grammar.lessonId === lessonId);
 	};
-
+	
 	return (
 		<>
 			{/* Header */}

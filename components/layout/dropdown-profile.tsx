@@ -70,15 +70,15 @@ const ProfileDropdown = ({ trigger, defaultOpen, align = 'end' }: Props) => {
 				<DropdownMenuGroup>
 					<DropdownMenuItem className='px-4 py-2.5 text-base'>
 						<UserIcon className='text-foreground size-5' />
-						<Link href={`/profile`}>My account</Link>
+						<Link href={`/profile`}>Tài khoản</Link>
 					</DropdownMenuItem>
 					<DropdownMenuItem className='px-4 py-2.5 text-base'>
 						<SettingsIcon className='text-foreground size-5' />
-						<Link href={`/settings`}>Settings</Link>
+						<Link href={`/settings`}>Cài đặt</Link>
 					</DropdownMenuItem>
 					<DropdownMenuItem className='px-4 py-2.5 text-base'>
 						<CreditCardIcon className='text-foreground size-5' />
-						<Link href={`/activities`}>Activities</Link>
+						<Link href={`/activities`}>Hoạt động</Link>
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
 

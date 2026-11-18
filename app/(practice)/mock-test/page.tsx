@@ -37,7 +37,7 @@ export default async function MockTestListPage() {
 	return (
 		<>
 			<PageHeader
-				title='JLPT Mock Test'
+				title='Thi thử'
 				description='Thử sức với các bài thi mô phỏng cấu trúc đề thi JLPT thực tế.'
 			/>
 

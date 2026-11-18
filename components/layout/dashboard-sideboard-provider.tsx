@@ -35,18 +35,6 @@ import {
 	SidebarProvider,
 } from '@/components/ui/sidebar';
 
-import {
-	Select,
-	SelectContent,
-	SelectGroup,
-	SelectItem,
-	SelectLabel,
-	SelectTrigger,
-	SelectValue,
-} from '@/components/ui/select';
-
-import { Level } from '@/types/types';
-
 import Logo from '@/components/Logo';
 import Link from 'next/link';
 
@@ -71,7 +59,7 @@ const menusSidebar: menuSidebarItem[] = [
 			},
 			{
 				icon: <Languages />,
-				title: 'Kanji',
+				title: 'Hán tự',
 				url: '/kanji',
 			},
 		],
@@ -101,42 +89,42 @@ const menusSidebar: menuSidebarItem[] = [
 			},
 		],
 	},
-	{
-		groupTitle: 'Bookmarks',
-		groupContent: [
-			{
-				icon: <Library />,
-				title: 'Vocabulary',
-				url: '/bookmarked-vocabulary',
-			},
-			{
-				icon: <BookOpenIcon />,
-				title: 'Grammar',
-				url: '/bookmarked-grammar',
-			},
-			{
-				icon: <Languages />,
-				title: 'Kanji',
-				url: '/bookmarked-kanji',
-			},
-		],
-	},
+	// {
+	// 	groupTitle: 'Bookmarks',
+	// 	groupContent: [
+	// 		{
+	// 			icon: <Library />,
+	// 			title: 'Vocabulary',
+	// 			url: '/bookmarked-vocabulary',
+	// 		},
+	// 		{
+	// 			icon: <BookOpenIcon />,
+	// 			title: 'Grammar',
+	// 			url: '/bookmarked-grammar',
+	// 		},
+	// 		{
+	// 			icon: <Languages />,
+	// 			title: 'Kanji',
+	// 			url: '/bookmarked-kanji',
+	// 		},
+	// 	],
+	// },
 	{
 		groupTitle: 'Create New Content',
 		groupContent: [
 			{
 				icon: <ChartSplineIcon />,
-				title: 'Create New Vocabulary',
+				title: 'Thêm từ vựng',
 				url: '/add-vocabulary',
 			},
 			{
 				icon: <UsersIcon />,
-				title: 'Add Another Grammar',
+				title: 'Thêm ngữ pháp',
 				url: '/add-grammar',
 			},
 			{
 				icon: <ChartPieIcon />,
-				title: 'Add Favorites Kanji',
+				title: 'Thêm Hán tự',
 				url: '/add-kanji',
 			},
 			{
@@ -146,7 +134,7 @@ const menusSidebar: menuSidebarItem[] = [
 			},
 			{
 				icon: <ArrowRightLeftIcon />,
-				title: 'Mocktest Builder',
+				title: 'Tạo bài kiểm tra',
 				url: '/mock-test-builder',
 			},
 		],
@@ -166,18 +154,18 @@ const menusSidebar: menuSidebarItem[] = [
 			},
 			{
 				icon: <Undo2Icon />,
-				title: 'Activities',
+				title: 'Hoạt động',
 				url: '/activities',
 			},
 			{
 				icon: <SettingsIcon />,
-				title: 'Settings & Integrations',
+				title: 'Cài đặt',
 				url: '/settings',
 			},
 			// Check Role if Admin
 			{
 				icon: <UsersIcon />,
-				title: 'User Management',
+				title: 'Quản lý người dùng',
 				url: '/user-management',
 			},
 		],
@@ -202,24 +190,6 @@ export default function DashBoardSideboardProvider({
 									<Link href='/'>
 										<Logo />
 									</Link>
-								</SidebarMenuItem>
-								<SidebarMenuItem>
-									Trình dộ hiện tại
-									<Select
-										defaultValue={Level.N5}
-										// onValueChange={(value) => updateLevelParams(value)}
-									>
-										<SelectTrigger className='w-[180px]'>
-											<SelectValue placeholder='Tất cả cấp độ' />
-										</SelectTrigger>
-										<SelectContent>
-											{Object.values(Level).map((lvl, index) => (
-												<SelectItem key={index} value={lvl}>
-													{lvl}
-												</SelectItem>
-											))}
-										</SelectContent>
-									</Select>
 								</SidebarMenuItem>
 								<SidebarMenuItem>
 									<SidebarMenuButton

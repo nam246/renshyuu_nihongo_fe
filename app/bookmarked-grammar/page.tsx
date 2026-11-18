@@ -1,7 +1,7 @@
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 
-import GrammarListDisplay from '../_components/grammar-list-display';
+import GrammarListDisplay from '../../components/layout/grammar-list-display';
 import PageHeader from '@/components/layout/page-header';
 import { getBookmarked } from '@/lib/data';
 import { Grammar, Vocabulary, Kanji } from '@/types/types';

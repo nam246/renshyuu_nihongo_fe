@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/card';
 import { Plus, Save, X } from 'lucide-react';
 import PageHeader from '@/components/layout/page-header';
-import { AddQuestionForm } from '../_components/form/add-question-form';
+import { AddQuestionForm } from '../../components/form/add-question-form';
 
 interface QuestionOption {
 	text: string;

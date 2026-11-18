@@ -3,14 +3,14 @@ import { authOptions } from '@/lib/auth';
 import { getDashboardStats } from '@/lib/data';
 import { BookOpenIcon, CheckCircle2, TrendingUp } from 'lucide-react';
 
-import UserStatistics from '../_components/user-statistics';
-import LearningStatsCard from '@/app/_components/learning-stats-card';
-import ProgressOverviewCard from '@/app/_components/progress-overview-card';
-import RecentLessonsCard from '@/app/_components/recent-lessons-card';
-import WeeklyActivityChart from '@/app/_components/weekly-activity-chart';
-import StudyTimeCard from '@/app/_components/study-time-card';
+import UserStatistics from '../../components/layout/user-statistics';
+import LearningStatsCard from '@/components/layout/learning-stats-card';
+import ProgressOverviewCard from '@/components/layout/progress-overview-card';
+import RecentLessonsCard from '@/components/layout/recent-lessons-card';
+import WeeklyActivityChart from '@/components/layout/weekly-activity-chart';
+import StudyTimeCard from '@/components/layout/study-time-card';
 import PageHeader from '@/components/layout/page-header';
-import TransactionDatatable from '../_components/datatable-transaction';
+import TransactionDatatable from '../../components/layout/datatable-transaction';
 import { Level } from '@/types/types';
 
 interface DashboardStats {

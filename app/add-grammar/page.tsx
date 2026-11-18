@@ -1,5 +1,5 @@
 import PageHeader from '@/components/layout/page-header';
-import AddGrammarForm from '../_components/form/add-grammar-form';
+import AddGrammarForm from '../../components/form/add-grammar-form';
 
 const AddGrammarPage = () => {
 	return (

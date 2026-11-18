@@ -1,6 +1,6 @@
 'use client';
 
-import EditProfileForm from './form/edit-profile-form';
+import EditProfileForm from '../form/edit-profile-form';
 import {
 	Card,
 	CardHeader,
@@ -19,11 +19,11 @@ interface UserProfileCardProps {
 		email: string;
 		username: string;
 		createdAt?: string;
-	};
+	} | null;
 }
 
 const UserProfileCard = ({ user }: UserProfileCardProps) => {
-	const joinDate = user.createdAt
+	const joinDate = user?.createdAt
 		? new Date(user.createdAt).toLocaleDateString('vi-VN', {
 				year: 'numeric',
 				month: 'long',
@@ -43,21 +43,25 @@ const UserProfileCard = ({ user }: UserProfileCardProps) => {
 
 					{/* User Info */}
 					<div>
-						<h2 className='text-2xl font-bold'>{user.name}</h2>
-						<p className='text-sm mt-1'>@{user.username}</p>
+						<h2 className='text-2xl font-bold'>{user?.name}</h2>
+						<p className='text-sm mt-1'>@{user?.username}</p>
 					</div>
 				</CardTitle>
 
 				<CardAction>
 					{/* Edit Button */}
-					<EditProfileForm
-						user={user}
-						onSave={async (data) => {
-							// Simulate API call
-							await new Promise((resolve) => setTimeout(resolve, 500));
-							console.log('Saved:', data);
-						}}
-					/>
+					{
+						user && (
+							<EditProfileForm
+								user={user}
+								onSave={async (data) => {
+									// Simulate API call
+									await new Promise((resolve) => setTimeout(resolve, 500));
+									console.log('Saved:', data);
+								}}
+							/>
+						)
+					}
 				</CardAction>
 			</CardHeader>
 
@@ -68,7 +72,7 @@ const UserProfileCard = ({ user }: UserProfileCardProps) => {
 					<Mail className='w-5 h-5' />
 					<div>
 						<p className='text-sm'>Email</p>
-						<p className='text-sm font-medium'>{user.email}</p>
+						<p className='text-sm font-medium'>{user?.email}</p>
 					</div>
 				</div>
 
@@ -77,7 +81,7 @@ const UserProfileCard = ({ user }: UserProfileCardProps) => {
 					<AtSign className='w-5 h-5' />
 					<div>
 						<p className='text-sm'>Tên người dùng</p>
-						<p className='text-sm font-medium'>{user.username}</p>
+						<p className='text-sm font-medium'>{user?.username}</p>
 					</div>
 				</div>
 

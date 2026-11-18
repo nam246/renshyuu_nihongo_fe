@@ -1,5 +1,5 @@
 import PageHeader from '@/components/layout/page-header';
-import { AddKanjiForm } from '../_components/form/add-kanji-form';
+import { AddKanjiForm } from '../../components/form/add-kanji-form';
 
 const AddKanjiPage = () => {
 	return (

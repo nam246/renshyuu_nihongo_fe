@@ -16,7 +16,7 @@ export async function getLessons(params?: string) {
 			throw new Error(`Failed to fetch lessons: ${res.statusText}`);
 		}
 		const data = await res.json();
-		return data;
+		return data.items;
 	} catch (error) {
 		console.log(error);
 		throw error;
@@ -75,7 +75,7 @@ export async function getGrammars() {
 			throw new Error(`Failed to fetch grammars: ${res.statusText}`);
 		}
 		const data = await res.json();
-		return data;
+		return data.items;
 	} catch (error) {
 		console.log(error);
 		throw error;
@@ -101,7 +101,7 @@ export async function getGrammarById(id: string) {
 
 export async function getKanjis() {
 	try {
-		const res = await fetch(`${API_URL}/kanji`);
+		const res = await fetch(`${API_URL}/kanjis`);
 		if (!res.ok) {
 			if (res.status === 404) {
 				throw new Error('No kanjis found');
@@ -109,7 +109,7 @@ export async function getKanjis() {
 			throw new Error(`Failed to fetch kanjis: ${res.statusText}`);
 		}
 		const data = await res.json();
-		return data;
+		return data.items;
 	} catch (error) {
 		console.log(error);
 		throw error;

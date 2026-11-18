@@ -11,7 +11,7 @@ import { SidebarTrigger } from '@/components/ui/sidebar';
 import ProfileDropdown from '@/components/layout/dropdown-profile';
 import DashBoardSideboardProvider from './dashboard-sideboard-provider';
 import PageBreadcrumb from '@/components/layout/breadcrumb';
-import ThemeToggle from '@/components/layout/theme-toggle';
+import { NotificationDropdown } from '@/components/layout/dropdown-notification';
 
 export default function MainLayoutShell({
 	children,
@@ -38,7 +38,7 @@ export default function MainLayoutShell({
 								<PageBreadcrumb />
 							</div>
 							<div className='flex items-center gap-1.5'>
-								<ThemeToggle />
+								<NotificationDropdown />
 								<ProfileDropdown
 									trigger={
 										<Button variant='ghost' size='icon' className='size-9.5'>

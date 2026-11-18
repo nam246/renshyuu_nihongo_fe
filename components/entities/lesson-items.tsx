@@ -35,7 +35,7 @@ export default function LessonItem({
 			<CardHeader>
 				<CardTitle className='text-xl font-bold flex items-center gap-1'>
 					<BookMarked />
-					Bài {lesson.lessonTitle}
+					Bài {lesson.lessonNumber}
 				</CardTitle>
 				<CardDescription>
 					<div className='font-medium flex items-center gap-1'>
